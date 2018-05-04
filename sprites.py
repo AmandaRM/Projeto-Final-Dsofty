@@ -41,10 +41,7 @@ malvado= malvado("zombie_stand.png", 700, 0)
 malvado_group=pygame.sprite.Group()
 malvado_group.add(malvado)
 
-#coloca plataforma
-plataforma1=plataform.Plataform("plataform_de_pedra_reta_pequena.png", [380, 94])
-plataformas_group=pygame.sprite.Group()
-plataformas_group.add(plataforma1)
+Plataforma=plataform.cria_Plataform()
 # ===============   LOOPING PRINCIPAL   ===============
 
 rodando = True
@@ -77,14 +74,13 @@ while rodando:
   elif pressed_keys[K_a]:
       malvado.rect.x-=1
   elif pressed_keys[K_d]:
-      malvado.rect.x+=1
-  
+      malvado.rect.x+=1  
         
   #gera saídas
   tela.blit(fundo, (0, 0))
   bonzinho_group.draw(tela)
   malvado_group.draw(tela)
-  plataformas_group.draw(tela)
+  Plataforma.draw(tela)
   pygame.display.update()      #coloca a tela na janela
     
 pygame.display.quit()
