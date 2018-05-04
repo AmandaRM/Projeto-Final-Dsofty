@@ -31,7 +31,7 @@ tela = pygame.display.set_mode((800, 600), 0, 32)
 pygame.display.set_caption('Pygame')
 
 # carrega imagem de fundo
-fundo = pygame.image.load("fundo_verde.png").convert()
+fundo = pygame.image.load("fundo_floresta.png").convert()
 
 # cria o bonzinho 
 bonzinho = bonzinho("adventurer_stand.png", 0, 450)
@@ -42,7 +42,7 @@ malvado= malvado("zombie_stand.png", 700, 0)
 malvado_group=pygame.sprite.Group()
 malvado_group.add(malvado)
 
-Plataforma=plataform.cria_Plataform()
+Plataforma=plataform.cria_Plataform_nAleatoria()
 # ===============   LOOPING PRINCIPAL   ===============
 
 rodando = True
