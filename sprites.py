@@ -62,6 +62,8 @@ while rodando:
       bonzinho.rect.x-=1
   elif pressed_keys[K_RIGHT]:
       bonzinho.rect.x+=1
+     
+  
       
   #move o malvado
   pressed_keys=pygame.key.get_pressed()   
