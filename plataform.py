@@ -14,3 +14,7 @@ class Plataform (pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = dimension[0]
         self.rect.y = dimension[1]
+        
+#def cria_Plataform:
+ #   i=0
+  #  while
