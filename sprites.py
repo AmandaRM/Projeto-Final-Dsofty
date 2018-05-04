@@ -55,6 +55,10 @@ while rodando:
   pressed_keys=pygame.key.get_pressed()
   if pressed_keys[K_UP]:
       movimento.bom_UP()
+  elif pressed_keys[K_LEFT]:
+      movivmento.bom_LEFT
+  elif pressed_keys[RIGHT]:
+      movimento.bom_RIGHT
      
   #gera saídas
   tela.blit(fundo, (0, 0))
