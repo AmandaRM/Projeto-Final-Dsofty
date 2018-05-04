@@ -31,7 +31,7 @@ tela = pygame.display.set_mode((800, 600), 0, 32)
 pygame.display.set_caption('Pygame')
 
 # carrega imagem de fundo
-fundo = pygame.image.load("fundo_floresta.png").convert()
+fundo = pygame.image.load("fundo_lua.gif").convert()
 
 # cria o bonzinho 
 bonzinho = bonzinho("adventurer_stand.png", 0, 450)
