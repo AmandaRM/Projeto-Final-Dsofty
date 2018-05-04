@@ -20,9 +20,9 @@ def cria_Plataform():
     plataformas_group=pygame.sprite.Group()
     i=0
     while i<5:
-        x=random.randint(0,600)
-        y=random.randint(0,800)
+        x=random.randint(0,500)
+        y=random.randint(0,500)
         plataforma1=Plataform("plataform_de_pedra_reta_pequena.png", [x, y])        
         plataformas_group.add(plataforma1)
         i+=1
-        return plataformas_group
+    return plataformas_group
