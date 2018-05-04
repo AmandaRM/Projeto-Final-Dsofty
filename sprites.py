@@ -75,8 +75,7 @@ while rodando:
   elif pressed_keys[K_a]:
       malvado.rect.x-=1
   elif pressed_keys[K_d]:
-      malvado.rect.x+=1
-  
+      malvado.rect.x+=1  
         
   #gera saídas
   tela.blit(fundo, (0, 0))
