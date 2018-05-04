@@ -5,11 +5,6 @@ Created on Fri May  4 08:03:19 2018
 @author: Amanda
 """
 import pygame
-import sys
-from pygame.locals import *
-from random import randrange
-import plataform
-pressed_keys=pygame.key.get_pressed()   
 
 # ===============      CLASSES      ===============
 class bonzinho(pygame.sprite.Sprite):
@@ -33,13 +28,10 @@ class malvado(pygame.sprite.Sprite):
 
 ####### fazer funções em que cada função é um movimento #####
 def bom_UP():
-    if pressed_keys[K_UP]:
       bonzinho.rect.y-=1
 
 def bom_LEFT():
-    if pressed_keys [K_LEFT]:
         bonzinho.rect.x-=1
 
 def bom_RIGHT():
-    if pressed_keys [K_RIGHT]:
         bonzinho.rect.x+=1
