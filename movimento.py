@@ -28,10 +28,10 @@ class malvado(pygame.sprite.Sprite):
 
 ####### fazer funções em que cada função é um movimento #####
 def bom_UP():
-      bonzinho.rect.y-=1
+    bonzinho.rect.y-=1
 
 def bom_LEFT():
-        bonzinho.rect.x-=1
+    bonzinho.rect.x-=1
 
 def bom_RIGHT():
-        bonzinho.rect.x+=1
+    bonzinho.rect.x+=1

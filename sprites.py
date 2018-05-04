@@ -28,7 +28,7 @@ class malvado(pygame.sprite.Sprite):
 # ===============   INICIALIZAÇÃO   ===============
 pygame.init()
 tela = pygame.display.set_mode((800, 600), 0, 32)
-pygame.display.set_caption('Pygame')
+pygame.display.set_caption('Nome do joguinho')
 
 # carrega imagem de fundo
 fundo = pygame.image.load("fundo_lua.gif").convert()
@@ -56,9 +56,9 @@ while rodando:
   if pressed_keys[K_UP]:
       movimento.bom_UP()
   elif pressed_keys[K_LEFT]:
-      movivmento.bom_LEFT
-  elif pressed_keys[RIGHT]:
-      movimento.bom_RIGHT
+      movivmento.bom_LEFT()
+  elif pressed_keys[K_RIGHT]:
+      movimento.bom_RIGHT()
      
   #gera saídas
   tela.blit(fundo, (0, 0))
