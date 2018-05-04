@@ -3,6 +3,7 @@ import sys
 from pygame.locals import *
 from random import randrange
 import plataform
+import movimento
 
 # ===============      CLASSES      ===============
 class bonzinho(pygame.sprite.Sprite):
@@ -50,32 +51,11 @@ while rodando:
   for event in pygame.event.get():  #pega lista de eventos
     if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
       rodando = False            #executa a função de sistema "exit"
-      
-  #move o bonzinho pela tela
-  pressed_keys=pygame.key.get_pressed()   
-  if pressed_keys[K_UP]:
-      bonzinho.rect.y-=1
-      #bonzinho.rect.y+=1
-  elif pressed_keys[K_DOWN]:
-      bonzinho.rect.y+=1
-  elif pressed_keys[K_LEFT]:
-      bonzinho.rect.x-=1
-  elif pressed_keys[K_RIGHT]:
-      bonzinho.rect.x+=1
-     
   
-      
-  #move o malvado
-  pressed_keys=pygame.key.get_pressed()   
-  if pressed_keys[K_w]:
-      malvado.rect.y-=1
-  elif pressed_keys[K_s]:
-      malvado.rect.y+=1
-  elif pressed_keys[K_a]:
-      malvado.rect.x-=1
-  elif pressed_keys[K_d]:
-      malvado.rect.x+=1  
-        
+  pressed_keys=pygame.key.get_pressed()
+  if pressed_keys[K_UP]:
+      movimento.bom_UP()
+     
   #gera saídas
   tela.blit(fundo, (0, 0))
   bonzinho_group.draw(tela)
