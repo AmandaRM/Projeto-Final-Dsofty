@@ -58,6 +58,7 @@ while rodando:
   pressed_keys=pygame.key.get_pressed()   
   if pressed_keys[K_UP]:
       bonzinho.rect.y-=1
+      #bonzinho.rect.y+=1
   elif pressed_keys[K_DOWN]:
       bonzinho.rect.y+=1
   elif pressed_keys[K_LEFT]:
@@ -76,8 +77,6 @@ while rodando:
   elif pressed_keys[K_d]:
       malvado.rect.x+=1
   
- 
-
         
   #gera saídas
   tela.blit(fundo, (0, 0))
