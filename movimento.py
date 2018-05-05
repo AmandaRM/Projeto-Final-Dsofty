@@ -28,3 +28,10 @@ class bonequinho(pygame.sprite.Sprite):
     def bom_RIGHT(self):
         self.rect.move_ip(1,0) #move_ip(x,y)
         return self
+    
+    def limite(self):
+        if self.bonequinho == True:
+            if self.rect.left <=0:
+                self.rect.left = 0
+            elif self.rect.right > 750:
+                self.rect.right = 750
