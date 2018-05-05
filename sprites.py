@@ -5,26 +5,6 @@ from random import randrange
 import plataform
 import movimento
 
-# ===============      CLASSES      ===============
-class bonzinho(pygame.sprite.Sprite):
-  
-  def __init__(self, arquivo_imagem, pos_x, pos_y):
-    pygame.sprite.Sprite.__init__(self)
-    self.image = pygame.image.load(arquivo_imagem)
-    self.rect = self.image.get_rect()
-    self.rect.x = pos_x
-    self.rect.y = pos_y
-    
- 
-# ===============      CLASSES      ===============
-class malvado(pygame.sprite.Sprite):
-    def __init__(self, arquivo_imagem, pos_x, pos_y):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load(arquivo_imagem)
-        self.rect = self.image.get_rect()
-        self.rect.x = pos_x
-        self.rect.y = pos_y
-    
 # ===============   INICIALIZAÇÃO   ===============
 pygame.init()
 tela = pygame.display.set_mode((800, 600), 0, 32)
@@ -34,15 +14,16 @@ pygame.display.set_caption('Nome do joguinho')
 fundo = pygame.image.load("fundo_lua.gif").convert()
 
 # cria o bonzinho 
-bonzinho = bonzinho("adventurer_stand.png", 0, 450)
+bonzinho = movimento.bonequinho("adventurer_stand.png", 0, 450)
 bonzinho_group = pygame.sprite.Group()
 bonzinho_group.add(bonzinho)
 #cria o malvado
-malvado= malvado("zombie_stand.png", 700, 0)
+malvado= movimento.bonequinho("zombie_stand.png", 700, 0)
 malvado_group=pygame.sprite.Group()
 malvado_group.add(malvado)
 
 Plataforma=plataform.cria_Plataform_nAleatoria()
+
 # ===============   LOOPING PRINCIPAL   ===============
 
 rodando = True
@@ -54,11 +35,19 @@ while rodando:
   
   pressed_keys=pygame.key.get_pressed()
   if pressed_keys[K_UP]:
-      movimento.bom_UP()
+      bonzinho=movimento.bonequinho.bom_UP(bonzinho)
   elif pressed_keys[K_LEFT]:
-      movivmento.bom_LEFT()
+      bonzinho=movimento.bonequinho.bom_LEFT(bonzinho)
   elif pressed_keys[K_RIGHT]:
-      movimento.bom_RIGHT()
+      bonzinho=movimento.bonequinho.bom_RIGHT(bonzinho)
+      
+  elif pressed_keys[K_w]:
+      malvado=movimento.bonequinho.bom_UP(malvado)
+  elif pressed_keys[K_d]:
+      malvado=movimento.bonequinho.bom_LEFT(malvado)
+  elif pressed_keys[K_a]:
+      malvado=movimento.bonequinho.bom_RIGHT(malvado)
+ 
      
   #gera saídas
   tela.blit(fundo, (0, 0))
