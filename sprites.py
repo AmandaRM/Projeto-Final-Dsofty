@@ -28,7 +28,6 @@ Plataforma=plataform.cria_Plataform_nAleatoria()
 
 rodando = True
 while rodando:
-  bonequinho.limite() ## isso faz com que essa função entre também
   for event in pygame.event.get():  #pega lista de eventos
     if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
       rodando = False            #executa a função de sistema "exit"
@@ -43,9 +42,9 @@ while rodando:
       
   elif pressed_keys[K_w]:
       malvado=movimento.bonequinho.bom_UP(malvado)
-  elif pressed_keys[K_d]:
-      malvado=movimento.bonequinho.bom_LEFT(malvado)
   elif pressed_keys[K_a]:
+      malvado=movimento.bonequinho.bom_LEFT(malvado)
+  elif pressed_keys[K_d]:
       malvado=movimento.bonequinho.bom_RIGHT(malvado)
  
      
