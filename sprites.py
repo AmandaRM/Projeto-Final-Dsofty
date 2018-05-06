@@ -21,6 +21,10 @@ bonzinho_group.add(bonzinho)
 malvado= movimento.bonequinho("zombie_stand.png", 700, 0)
 malvado_group=pygame.sprite.Group()
 malvado_group.add(malvado)
+#cria o portal=objetivo
+portal=movimento.bonequinho("portal.png", 0, 0)
+portal_group = pygame.sprite.Group()
+portal_group.add(portal)
 
 Plataforma=plataform.cria_Plataform_nAleatoria()
 
@@ -52,6 +56,7 @@ while rodando:
   tela.blit(fundo, (0, 0))
   bonzinho_group.draw(tela)
   malvado_group.draw(tela)
+  portal_group.draw(tela)
   Plataforma.draw(tela)
   pygame.display.update()      #coloca a tela na janela
     
