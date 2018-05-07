@@ -18,7 +18,7 @@ class bonequinho(pygame.sprite.Sprite):
         self.rect.y = pos_y
 
     def bom_UP(self):
-        self.rect.move_ip(0,-2) #move_ip(x,y)
+        self.rect.move_ip(0,-1) #move_ip(x,y)
         return self
 
     def bom_LEFT(self):
