@@ -22,7 +22,7 @@ class bonequinho(pygame.sprite.Sprite):
         return self
 
     def bom_LEFT(self):
-        if 1<= self.rect.x <=750:
+        if 0< self.rect.x <=750:
             self.rect.move_ip(-1,0) #move_ip(x,y)
             return self
         else:
@@ -30,7 +30,7 @@ class bonequinho(pygame.sprite.Sprite):
             return self
 
     def bom_RIGHT(self):
-        if 1<= self.rect.x <=750:
+        if 0<= self.rect.x <750:
             self.rect.move_ip(1,0) #move_ip(x,y)
             return self
         else:

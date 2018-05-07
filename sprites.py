@@ -14,11 +14,11 @@ pygame.display.set_caption('Nome do joguinho')
 fundo = pygame.image.load("fundo_lua.gif").convert()
 
 # cria o bonzinho 
-bonzinho = movimento.bonequinho("adventurer_stand.png", 0, 450)
+bonzinho = movimento.bonequinho("adventurer_stand.png", 1, 450)
 bonzinho_group = pygame.sprite.Group()
 bonzinho_group.add(bonzinho)
 #cria o malvado
-malvado= movimento.bonequinho("zombie_stand.png", 700, 0)
+malvado= movimento.bonequinho("zombie_stand.png", 700, 1)
 malvado_group=pygame.sprite.Group()
 malvado_group.add(malvado)
 #cria o portal=objetivo
