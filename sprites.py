@@ -27,7 +27,12 @@ portal_group = pygame.sprite.Group()
 portal_group.add(portal)
 
 Plataforma=plataform.cria_Plataform_nAleatoria()
+black=(0,0,0)
 
+def gameover():
+    fonte=pygame.font.SysFont(None, 25) #25 é o tamanho da mensagem
+    text=fonte.render("Fim de jogo", True, black)
+    tela.blit(text,(150,250))
 # ===============   LOOPING PRINCIPAL   ===============
 
 rodando = True
@@ -37,13 +42,12 @@ while rodando:
     if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
       rodando = False            #executa a função de sistema "exit"
   
+  gravidade=10 
+  pygame.Rect.collidepoint
+  
   pressed_keys=pygame.key.get_pressed()
-  if pressed_keys[K_UP]:
-         for i in range(10):
-            bonzinho=bonzinho.rect.y-=1
-        for i in range(10):
-            self.rect.y+=1
-            time.sleep(0.01)
+  if pressed_keys[K_UP]:         
+      bonzinho=movimento.bonequinho.bom_UP(bonzinho)
   elif pressed_keys[K_LEFT]:
       bonzinho=movimento.bonequinho.bom_LEFT(bonzinho)
   elif pressed_keys[K_RIGHT]:
@@ -54,9 +58,11 @@ while rodando:
   elif pressed_keys[K_a]:
       malvado=movimento.bonequinho.bom_LEFT(malvado)
   elif pressed_keys[K_d]:
-      malvado=movimento.bonequinho.bom_RIGHT(malvado)
- 
-     
+      malvado=movimento.bonequinho.bom_RIGHT(malvado)  
+      
+  elif bonzinho.rect.y>=0:
+      gameover()
+
   #gera saídas
   tela.blit(fundo, (0, 0))
   bonzinho_group.draw(tela)
@@ -64,5 +70,14 @@ while rodando:
   portal_group.draw(tela)
   Plataforma.draw(tela)
   pygame.display.update()      #coloca a tela na janela
+  
+  bonzinho.rect.y+=bonzinho.vel
+  bonzinho.vel+=0.001
+  
+  malvado.rect.y+=malvado.vel
+  malvado.vel+=0.001
+  
+relogio=pygame.time.Clock()
+tempo=relogio.tick(30)  
     
 pygame.display.quit()
