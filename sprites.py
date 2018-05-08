@@ -37,12 +37,12 @@ while rodando:
       rodando = False            #executa a função de sistema "exit"
   
   pressed_keys=pygame.key.get_pressed()
-  if pressed_keys[K_UP]:
-      bonzinho=movimento.bonequinho.bom_UP(bonzinho)
+  if pressed_keys[K_UP] and not bonzinho.pulando:
+      bonzinho.bom_UP()
   elif pressed_keys[K_LEFT]:
-      bonzinho=movimento.bonequinho.bom_LEFT(bonzinho)
+      bonzinho.bom_LEFT()
   elif pressed_keys[K_RIGHT]:
-      bonzinho=movimento.bonequinho.bom_RIGHT(bonzinho)
+      bonzinho.bom_RIGHT()
       
   elif pressed_keys[K_w]:
       malvado=movimento.bonequinho.bom_UP(malvado)
