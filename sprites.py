@@ -39,7 +39,11 @@ while rodando:
   
   pressed_keys=pygame.key.get_pressed()
   if pressed_keys[K_UP]:
-      bonzinho=movimento.bonequinho.pulando(bonzinho)
+         for i in range(10):
+            bonzinho=bonzinho.rect.y-=1
+        for i in range(10):
+            self.rect.y+=1
+            time.sleep(0.01)
   elif pressed_keys[K_LEFT]:
       bonzinho=movimento.bonequinho.bom_LEFT(bonzinho)
   elif pressed_keys[K_RIGHT]:

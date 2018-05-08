@@ -21,11 +21,10 @@ class bonequinho(pygame.sprite.Sprite):
     def pulando(self):
         for i in range(10):
             self.rect.y-=1
-            return self
         for i in range(10):
             self.rect.y+=1
             time.sleep(0.01)
-            return self
+#            return self
 
     def bom_UP(self):
         self.pulando = True
