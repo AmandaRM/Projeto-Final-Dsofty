@@ -28,6 +28,7 @@ def cria_Plataform_Aleatoria():
     return plataformas_group
 
 
+
 """    i=0
     plataformas_group=pygame.sprite.Group()
     while i<15:

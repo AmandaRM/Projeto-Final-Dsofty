@@ -5,8 +5,6 @@ Created on Fri May  4 08:03:19 2018
 @author: Amanda
 """
 import pygame
-import time
-
 # ===============      CLASSES      ===============
     
 
@@ -17,17 +15,13 @@ class bonequinho(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = pos_x
         self.rect.y = pos_y
-        self.pulando = False
-
+        vel=0.1
+        self.vel = vel
+    
     def bom_UP(self):
-        self.pulando = True
-        for i in range(10):
-            self.rect.y -= 1
-            time.sleep(1)
-        for i in range(10):
-            self.rect.y += 1
-            time.sleep(0.01)
-        self.pulando = False
+        if  self.rect.y>0:
+            self.vel+=10
+            return self
 
     def bom_LEFT(self):
         if 0< self.rect.x <=750:
