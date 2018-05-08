@@ -33,19 +33,24 @@ Plataforma=plataform.cria_Plataform_nAleatoria()
 rodando = True
 while rodando:
   for event in pygame.event.get():  #pega lista de eventos
+      #gravidade = True
     if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
       rodando = False            #executa a função de sistema "exit"
   
   pressed_keys=pygame.key.get_pressed()
   if pressed_keys[K_UP]:
-      bonzinho=movimento.bonequinho.bom_UP(bonzinho)
+         for i in range(10):
+            bonzinho=bonzinho.rect.y-=1
+        for i in range(10):
+            self.rect.y+=1
+            time.sleep(0.01)
   elif pressed_keys[K_LEFT]:
       bonzinho=movimento.bonequinho.bom_LEFT(bonzinho)
   elif pressed_keys[K_RIGHT]:
       bonzinho=movimento.bonequinho.bom_RIGHT(bonzinho)
       
   elif pressed_keys[K_w]:
-      malvado=movimento.bonequinho.bom_UP(malvado)
+      malvado=movimento.bonequinho.pulando(malvado)
   elif pressed_keys[K_a]:
       malvado=movimento.bonequinho.bom_LEFT(malvado)
   elif pressed_keys[K_d]:
