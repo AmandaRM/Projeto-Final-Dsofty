@@ -13,6 +13,7 @@ pygame.display.set_caption('Nome do joguinho')
 
 #fazendo o chão do jogo
 fundo = pygame.image.load("chão.png").convert()
+#fazer virar grupo
 
 # cria o bonzinho 
 bonzinho = movimento.bonequinho("adventurer_stand.png", 1, 450)
@@ -46,6 +47,9 @@ while rodando:
   gravidade=10 
   pygame.Rect.collidepoint
   
+  #if pygame.sprite.spritecollide(bonzinho, fundo, False):
+    #  bonzinho.vx == 0
+     # bonzinho.vy == 0
   pressed_keys=pygame.key.get_pressed()
   if pressed_keys[K_UP]:         
       bonzinho=movimento.bonequinho.bom_UP(bonzinho)
