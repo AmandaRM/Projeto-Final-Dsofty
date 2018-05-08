@@ -10,8 +10,9 @@ pygame.init()
 tela = pygame.display.set_mode((800, 600), 0, 32)
 pygame.display.set_caption('Nome do joguinho')
 
-# carrega imagem de fundo
-fundo = pygame.image.load("fundo_lua.gif").convert()
+
+#fazendo o chão do jogo
+fundo = pygame.image.load("chãotop.png").convert()
 
 # cria o bonzinho 
 bonzinho = movimento.bonequinho("adventurer_stand.png", 1, 450)
@@ -64,7 +65,7 @@ while rodando:
       gameover()
 
   #gera saídas
-  tela.blit(fundo, (0, 0))
+  tela.blit(fundo, (0, -125))
   bonzinho_group.draw(tela)
   malvado_group.draw(tela)
   portal_group.draw(tela)
