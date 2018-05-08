@@ -12,7 +12,7 @@ pygame.display.set_caption('Nome do joguinho')
 
 
 #fazendo o chão do jogo
-fundo = pygame.image.load("chãotop.png").convert()
+fundo = pygame.image.load("chão.png").convert()
 
 # cria o bonzinho 
 bonzinho = movimento.bonequinho("adventurer_stand.png", 1, 450)
@@ -65,7 +65,7 @@ while rodando:
       gameover()
 
   #gera saídas
-  tela.blit(fundo, (0, -125))
+  tela.blit(fundo, (0, -85))
   bonzinho_group.draw(tela)
   malvado_group.draw(tela)
   portal_group.draw(tela)
