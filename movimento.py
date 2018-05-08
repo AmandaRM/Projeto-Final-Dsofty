@@ -20,7 +20,8 @@ class bonequinho(pygame.sprite.Sprite):
     
     def bom_UP(self):
         if  self.rect.y>0:
-            self.vel+=10
+            self.vel-=0.05
+            self.rect.y-=self.vel
             return self
 
     def bom_LEFT(self):

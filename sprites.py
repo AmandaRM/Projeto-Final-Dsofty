@@ -16,7 +16,7 @@ fundo = pygame.image.load("chão.png").convert()
 #fazer virar grupo
 
 # cria o bonzinho 
-bonzinho = movimento.bonequinho("adventurer_stand.png", 1, 450)
+bonzinho = movimento.bonequinho("adventurer_stand.png",350, 450)
 bonzinho_group = pygame.sprite.Group()
 bonzinho_group.add(bonzinho)
 #cria o malvado
@@ -27,6 +27,11 @@ malvado_group.add(malvado)
 portal=movimento.bonequinho("portal.png", 0, 0)
 portal_group = pygame.sprite.Group()
 portal_group.add(portal)
+
+chao=movimento.bonequinho("chão.png", 0, -85)
+chao_group = pygame.sprite.Group()
+chao_group.add(chao)
+
 
 Plataforma=plataform.cria_Plataform_nAleatoria()
 black=(0,0,0)
@@ -43,13 +48,16 @@ while rodando:
       #gravidade = True
     if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
       rodando = False            #executa a função de sistema "exit"
-  
-  gravidade=10 
-  pygame.Rect.collidepoint
-  
-  #if pygame.sprite.spritecollide(bonzinho, fundo, False):
-    #  bonzinho.vx == 0
-     # bonzinho.vy == 0
+
+  if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
+      bonzinho.vel = 0
+      
+  if pygame.sprite.spritecollide(malvado, Plataforma, False):
+      malvado.vel = 0 
+      
+#  if pygame.sprite.spritecollide(malvado, bonzinho, True):
+#      gameover()
+      
   pressed_keys=pygame.key.get_pressed()
   if pressed_keys[K_UP]:         
       bonzinho=movimento.bonequinho.bom_UP(bonzinho)
@@ -59,7 +67,7 @@ while rodando:
       bonzinho=movimento.bonequinho.bom_RIGHT(bonzinho)
       
   elif pressed_keys[K_w]:
-      malvado=movimento.bonequinho.pulando(malvado)
+      malvado=movimento.bonequinho.bom_UP(malvado)
   elif pressed_keys[K_a]:
       malvado=movimento.bonequinho.bom_LEFT(malvado)
   elif pressed_keys[K_d]:
@@ -70,6 +78,7 @@ while rodando:
 
   #gera saídas
   tela.blit(fundo, (0, -85))
+  chao_group.draw(tela)
   bonzinho_group.draw(tela)
   malvado_group.draw(tela)
   portal_group.draw(tela)
@@ -77,12 +86,12 @@ while rodando:
   pygame.display.update()      #coloca a tela na janela
   
   bonzinho.rect.y+=bonzinho.vel
-  bonzinho.vel+=0.001
+  bonzinho.vel+=0.07
   
   malvado.rect.y+=malvado.vel
-  malvado.vel+=0.001
+  malvado.vel+=0.07
   
 relogio=pygame.time.Clock()
-tempo=relogio.tick(30)  
+tempo=relogio.tick(160)  
     
 pygame.display.quit()
