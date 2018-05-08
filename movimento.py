@@ -17,16 +17,18 @@ class bonequinho(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = pos_x
         self.rect.y = pos_y
-        self.pulando = False
+
+    def pulando(self):
+        for i in range(10):
+            self.rect.y-=1
+            return self
+        for i in range(10):
+            self.rect.y+=1
+            time.sleep(0.01)
+            return self
 
     def bom_UP(self):
         self.pulando = True
-        for i in range(10):
-            self.rect.y -= 1
-            time.sleep(1)
-        for i in range(10):
-            self.rect.y += 1
-            time.sleep(0.01)
         self.pulando = False
 
     def bom_LEFT(self):
