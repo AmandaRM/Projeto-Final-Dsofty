@@ -85,7 +85,7 @@ while rodando:
   Plataforma.draw(tela)
   pygame.display.update()      #coloca a tela na janela
   
-  bonzinho.rect.y+=bonzinho.vel
+ dsadsdwas bonzinho.rect.y+=bonzinho.vel
   bonzinho.vel+=0.07
   
   malvado.rect.y+=malvado.vel
