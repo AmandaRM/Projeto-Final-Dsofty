@@ -16,18 +16,32 @@ class Plataform (pygame.sprite.Sprite):
         self.rect.x = dimension[0]
         self.rect.y = dimension[1]
         
+"""
 def cria_Plataform_Aleatoria():
     plataformas_group=pygame.sprite.Group()
-    i=0
-    while i<5:
-        x=random.randint(0,500)
-        y=random.randint(0,500)
-        plataforma1=Plataform("plataform_de_pedra_reta_pequena.png", [x, y])        
-        plataformas_group.add(plataforma1)
-        i+=1
+    x=random.randint(130,200)
+    y=random.randint(50,100)
+    plataforma1=Plataform("plataform_de_pedra_reta_pequena.png", [x, y]) 
+    if 0<plataforma1.rect.x<128 and 0<plataforma1.rect.y<128:  
+        x=random.randint(130,200)
+        y=random.randint(20,200)
+        plataforma1=Plataform("plataform_de_pedra_reta_pequena.png", [x, y])
+    plataformas_group.add(plataforma1)
+    contador = 0
+    while contador < 2:x
+        delta_x=random.randint(50,100)
+        delta_y =random.randint(100,200)
+        plataforma2=Plataform("plataform_de_pedra_reta_pequena.png", [plataforma.rect.x, plataforma1.rect.y])
+        plataforma2.rect.x += delta_x
+        plataforma2.rect.y += delta_y
+        plataformas_group.add(plataforma2)
+        contador +=1
+    
+        
+        
     return plataformas_group
 
-
+"""
 
 """    i=0
     plataformas_group=pygame.sprite.Group()

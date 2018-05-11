@@ -12,7 +12,7 @@ pygame.display.set_caption('Nome do joguinho')
 
 
 #fazendo o chão do jogo
-fundo = pygame.image.load("chão.png").convert()
+fundo = pygame.image.load("chão_original.png").convert()
 #fazer virar grupo
 
 # cria o bonzinho 
@@ -28,16 +28,17 @@ portal=movimento.bonequinho("portal.png", 0, 0)
 portal_group = pygame.sprite.Group()
 portal_group.add(portal)
 
-chao=movimento.bonequinho("chão.png", 0, -85)
+chao=movimento.bonequinho("chão.png", 0, 570)
 chao_group = pygame.sprite.Group()
 chao_group.add(chao)
 
+Plataforma=plataform.cria_Plataform_Aleatoria()
 
-Plataforma=plataform.cria_Plataform_nAleatoria()
 black=(0,0,0)
 
 def gameover():
-    fonte=pygame.font.SysFont(None, 25) #25 é o tamanho da mensagem
+    
+    fonte=pygame.font.SysFont(None,25) #25 é o tamanho da mensagem
     text=fonte.render("Fim de jogo", True, black)
     tela.blit(text,(150,250))
 # ===============   LOOPING PRINCIPAL   ===============
@@ -48,6 +49,9 @@ while rodando:
       #gravidade = True
     if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
       rodando = False            #executa a função de sistema "exit"
+    if event.type == pygame.KEYDOWN:
+        if event.key == K_UP:
+             bonzinho=movimento.bonequinho.bom_UP(bonzinho)
 
   if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
       bonzinho.vel = 0
@@ -55,13 +59,25 @@ while rodando:
   if pygame.sprite.spritecollide(malvado, Plataforma, False):
       malvado.vel = 0 
       
+  if pygame.sprite.spritecollide(bonzinho, chao_group, False):
+      bonzinho.vel = 0
+      
+  if pygame.sprite.spritecollide(malvado, chao_group, False):
+      malvado.vel = 0
+      
+  if pygame.sprite.spritecollide(malvado, bonzinho_group, True):
+      malvado.vel = 0
+      gameover()
+      
+  if pygame.sprite.spritecollide(portal, malvado_group, True) or  pygame.sprite.spritecollide(portal, bonzinho_group, True):
+      malvado.vel = 0
+      #----------------------passar de fase---------------------
+      
 #  if pygame.sprite.spritecollide(malvado, bonzinho, True):
 #      gameover()
       
-  pressed_keys=pygame.key.get_pressed()
-  if pressed_keys[K_UP]:         
-      bonzinho=movimento.bonequinho.bom_UP(bonzinho)
-  elif pressed_keys[K_LEFT]:
+  pressed_keys=pygame.key.get_pressed()     
+  if pressed_keys[K_LEFT]:
       bonzinho=movimento.bonequinho.bom_LEFT(bonzinho)
   elif pressed_keys[K_RIGHT]:
       bonzinho=movimento.bonequinho.bom_RIGHT(bonzinho)
