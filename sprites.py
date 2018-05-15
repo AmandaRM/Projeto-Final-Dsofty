@@ -32,7 +32,7 @@ chao=movimento.bonequinho("chão.png", 0, 570)
 chao_group = pygame.sprite.Group()
 chao_group.add(chao)
 
-Plataforma=plataform.cria_Plataform_Aleatoria()
+Plataforma=plataform.cria_Plataform_nAleatoria()
 
 black=(0,0,0)
 

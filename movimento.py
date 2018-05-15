@@ -21,7 +21,7 @@ class bonequinho(pygame.sprite.Sprite):
     def bom_UP(self):
         if  self.rect.y>0:
             self.vel-=2
-            self.rect.move_ip(0,-2)
+            self.rect.move_ip(0,-5)
             self.rect.y+=self.vel
             return self
 
