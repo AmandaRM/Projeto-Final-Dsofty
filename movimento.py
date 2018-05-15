@@ -15,13 +15,13 @@ class bonequinho(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = pos_x
         self.rect.y = pos_y
-        vel=0.7
+        vel=10
         self.vel = vel
     
     def bom_UP(self):
         if  self.rect.y>0:
-            self.vel-=2
-            self.rect.move_ip(0,-5)
+            self.vel-=10
+            self.rect.move_ip(0,-10)
             self.rect.y+=self.vel
             return self
 
