@@ -21,7 +21,7 @@ def game_menu():
     gameDisplay.fill(white)
     largeText = pygame.font.Font('freesansbold.ttf', 115)
     TextSurf, TextRect = text_objects("jogo da porra", largeText)
-    TextRect.center = ((displat_width/2), (display_height/2))
+    TextRect.center = ((display_width/2), (display_height/2))
     gameDisplay.blit(TextSurf, TextRect)
     pygame.display.update()
     clock.tick(15)
