@@ -35,23 +35,35 @@ chao_group.add(chao)
 Plataforma=plataform.cria_Plataform_Aleatoria()
 
 black=(0,0,0)
+white = (255, 255, 255)
 
 def gameover():
-    
     fonte=pygame.font.SysFont(None,25) #25 é o tamanho da mensagem
-    text=fonte.render("Fim de jogo", True, black)
+    text=fonte.render("Fim de jogo", True, white)
     tela.blit(text,(150,250))
+    
+cont=0
 # ===============   LOOPING PRINCIPAL   ===============
 
 rodando = True
+relogio=pygame.time.Clock()
 while rodando:
+
+  tempo=relogio.tick(30) 
+    
   for event in pygame.event.get():  #pega lista de eventos
-      #gravidade = True
+    fonte=pygame.font.SysFont(None,25, None)
+    #text=fonte.render(cont, "TIME: ", True, white)
+    #tela.blit(text, (20,20)) 
+   
     if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
       rodando = False            #executa a função de sistema "exit"
     if event.type == pygame.KEYDOWN:
         if event.key == K_UP:
              bonzinho=movimento.bonequinho.bom_UP(bonzinho)
+    if event.type == pygame.KEYDOWN:
+        if event.key == K_w:
+             malvado=movimento.bonequinho.bom_UP(malvado)
 
   if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
       bonzinho.vel = 0
@@ -67,7 +79,7 @@ while rodando:
       
   if pygame.sprite.spritecollide(malvado, bonzinho_group, True):
       malvado.vel = 0
-      gameover()
+      print(gameover())
       
   if pygame.sprite.spritecollide(portal, malvado_group, True) or  pygame.sprite.spritecollide(portal, bonzinho_group, True):
       malvado.vel = 0
@@ -82,8 +94,7 @@ while rodando:
   elif pressed_keys[K_RIGHT]:
       bonzinho=movimento.bonequinho.bom_RIGHT(bonzinho)
       
-  elif pressed_keys[K_w]:
-      malvado=movimento.bonequinho.bom_UP(malvado)
+
   elif pressed_keys[K_a]:
       malvado=movimento.bonequinho.bom_LEFT(malvado)
   elif pressed_keys[K_d]:
@@ -106,8 +117,7 @@ while rodando:
   
   malvado.rect.y+=malvado.vel
   malvado.vel+=0.07
-  
-relogio=pygame.time.Clock()
-tempo=relogio.tick(160)  
+
+cont+=1  
     
 pygame.display.quit()
