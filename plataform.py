@@ -44,14 +44,15 @@ def cria_Plataform_Aleatoria():
     i=0
     x=[]
     x.append(random.randint(0,200))
-    x.append(random.randint(200,400))
-    x.append(random.randint(400,600))
-    x.append(random.randint(600,800))
+    x.append(random.randint(250,400))
+    x.append(random.randint(450,600))
+    x.append(random.randint(650,700))
     y=[]
-    y.append(random.randint(0,100))
-    y.append(random.randint(200,300))
-    y.append(random.randint(400,500))
-    while i<3:
+    y.append(random.randint(50,170))
+    y.append(random.randint(220,270))
+    y.append(random.randint(320,370))
+    y.append(random.randint(420,470))
+    while i<4:
         plataforma=Plataform("plataform_de_pedra_reta_pequena.png", [x[0], y[i]])
         plataformas_group.add(plataforma)
         
@@ -59,6 +60,9 @@ def cria_Plataform_Aleatoria():
         plataformas_group.add(plataforma1)
         
         plataforma1=Plataform("plataform_de_pedra_reta_pequena.png", [x[2], y[i]])
+        plataformas_group.add(plataforma1)
+        
+        plataforma1=Plataform("plataform_de_pedra_reta_pequena.png", [x[3], y[i]])
         plataformas_group.add(plataforma1)
         i+=1
     return plataformas_group

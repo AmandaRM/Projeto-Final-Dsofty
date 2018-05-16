@@ -4,6 +4,7 @@ from pygame.locals import *
 from random import randrange
 import plataform
 import movimento
+import menu
 
 # ===============   INICIALIZAÇÃO   ===============
 pygame.init()
@@ -96,6 +97,7 @@ while rodando:
       
   if pygame.sprite.spritecollide(portal, malvado_group, True) or  pygame.sprite.spritecollide(portal, bonzinho_group, True):
       malvado.vel = 0
+
       #----------------------passar de fase---------------------
       
 #  if pygame.sprite.spritecollide(malvado, bonzinho, True):
@@ -135,5 +137,5 @@ while rodando:
   malvado.vel+=0.07
 
 cont+=1  
-    
+#menu.game_menu()
 pygame.display.quit()
