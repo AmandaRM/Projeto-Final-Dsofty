@@ -61,9 +61,22 @@ while rodando:
     if event.type == pygame.KEYDOWN:
         if event.key == K_UP:
              bonzinho=movimento.bonequinho.bom_UP(bonzinho)
+             bonzinho.image = pygame.image.load("adventurer_jump.png")
     if event.type == pygame.KEYDOWN:
         if event.key == K_w:
              malvado=movimento.bonequinho.bom_UP(malvado)
+    if event.type == pygame.KEYUP:
+        if event.key == K_RIGHT:
+            bonzinho.image = pygame.image.load("adventurer_stand.png")
+    if event.type == pygame.KEYUP:
+        if event.key == K_LEFT:
+            bonzinho.image = pygame.image.load("adventurer_stand.png")
+    if event.type == pygame.KEYUP:
+        if event.key == K_UP:
+            bonzinho.image = pygame.image.load("adventurer_stand.png")
+            
+            
+            
 
   if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
       bonzinho.vel = 0
@@ -91,17 +104,20 @@ while rodando:
   pressed_keys=pygame.key.get_pressed()     
   if pressed_keys[K_LEFT]:
       bonzinho=movimento.bonequinho.bom_LEFT(bonzinho)
+      bonzinho.image = pygame.image.load("adventurer_walk2.png")
   elif pressed_keys[K_RIGHT]:
       bonzinho=movimento.bonequinho.bom_RIGHT(bonzinho)
-      
+      bonzinho.image = pygame.image.load("adventurer_walk1.png")
 
   elif pressed_keys[K_a]:
       malvado=movimento.bonequinho.bom_LEFT(malvado)
   elif pressed_keys[K_d]:
       malvado=movimento.bonequinho.bom_RIGHT(malvado)  
-      
+
   elif bonzinho.rect.y>=0:
       gameover()
+  
+
 
   #gera saídas
   tela.blit(fundo, (0, -85))
