@@ -25,7 +25,7 @@ malvado= movimento.bonequinho("zombie_stand.png", 700, 1)
 malvado_group=pygame.sprite.Group()
 malvado_group.add(malvado)
 #cria o portal=objetivo
-portal=movimento.bonequinho("portal.png", 0, 0)
+portal=movimento.bonequinho("poção_vermelha_top (1).png", 0, 0)
 portal_group = pygame.sprite.Group()
 portal_group.add(portal)
 
@@ -41,7 +41,7 @@ white = (255, 255, 255)
 def gameover():
     fonte=pygame.font.SysFont(None,25) #25 é o tamanho da mensagem
     text=fonte.render("Fim de jogo", True, white)
-    tela.blit(text,(150,250))
+    return tela.blit(text,(400,400))
     
 cont=0
 # ===============   LOOPING PRINCIPAL   ===============
@@ -54,8 +54,8 @@ while rodando:
     
   for event in pygame.event.get():  #pega lista de eventos
     fonte=pygame.font.SysFont(None,25, None)
-    #text=fonte.render(cont, "TIME: ", True, white)
-    #tela.blit(text, (20,20)) 
+#    text=fonte.render(cont, "TIME: ", True, white)
+#    tela.blit(text, (20,20)) 
    
     if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
       rodando = False            #executa a função de sistema "exit"
@@ -76,9 +76,9 @@ while rodando:
         if event.key == K_UP:
             bonzinho.image = pygame.image.load("adventurer_stand.png")
             
-            
-            
-
+#  if pygame.sprite.spritecollide(Plataf, portal_group, True):
+#      continue
+#            
   if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
       bonzinho.vel = 0
       
@@ -91,10 +91,10 @@ while rodando:
   if pygame.sprite.spritecollide(malvado, chao_group, False):
       malvado.vel = 0
       
-  if pygame.sprite.spritecollide(malvado, bonzinho_group, True):
-      malvado.vel = 0
-      print(gameover())
-      
+  if pygame.sprite.spritecollide(malvado, bonzinho_group, True)
+        malvado.vel = 0
+        gameover()
+              
   if pygame.sprite.spritecollide(portal, malvado_group, True) or  pygame.sprite.spritecollide(portal, bonzinho_group, True):
       malvado.vel = 0
 
@@ -131,10 +131,10 @@ while rodando:
   pygame.display.update()      #coloca a tela na janela
   
   bonzinho.rect.y+=bonzinho.vel
-  bonzinho.vel+=0.07
+  bonzinho.vel+=2
   
   malvado.rect.y+=malvado.vel
-  malvado.vel+=0.07
+  malvado.vel+=2
 
 cont+=1  
 #menu.game_menu()

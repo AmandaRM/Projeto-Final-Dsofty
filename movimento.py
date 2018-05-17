@@ -15,29 +15,29 @@ class bonequinho(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = pos_x
         self.rect.y = pos_y
-        vel=10
+        vel=15
         self.vel = vel
     
     def bom_UP(self):
         if  self.rect.y>0:
-            self.vel-=10
-            self.rect.move_ip(0,-10)
+            self.vel-=9
+            self.rect.move_ip(0,-1)
             self.rect.y+=self.vel
             return self
 
     def bom_LEFT(self):
         if 0< self.rect.x <=750:
-            self.rect.move_ip(-1,0) #move_ip(x,y)
+            self.rect.move_ip(-2,0) #move_ip(x,y)
             return self
         else:
-            self.rect.move_ip(1,0)
+            self.rect.move_ip(2,0)
             return self
 
     def bom_RIGHT(self):
         if 0<= self.rect.x <750:
-            self.rect.move_ip(1,0) #move_ip(x,y)
+            self.rect.move_ip(2,0) #move_ip(x,y)
             return self
         else:
-            self.rect.move_ip(-1,0)
+            self.rect.move_ip(-2,0)
             return self
     

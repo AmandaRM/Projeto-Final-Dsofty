@@ -43,7 +43,7 @@ def cria_Plataform_Aleatoria():
     plataformas_group=pygame.sprite.Group()
     i=0
     x=[]
-    x.append(random.randint(0,200))
+    x.append(random.randint(100,200))
     x.append(random.randint(250,400))
     x.append(random.randint(450,600))
     x.append(random.randint(650,700))
