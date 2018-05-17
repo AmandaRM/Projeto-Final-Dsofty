@@ -31,8 +31,8 @@ portal_group.add(portal)
 portal_image=pygame.image.load("portal.png").convert()
 
 chao=movimento.bonequinho("chão.png", 0, 570)
-chaos_group = pygame.sprite.Group()
-chaos_group.add(chao)
+chao_group= pygame.sprite.Group()
+chao_group.add(chao)
 
 Plataforma=plataform.cria_Plataform_Aleatoria()
 
