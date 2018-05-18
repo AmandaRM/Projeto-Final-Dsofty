@@ -4,6 +4,7 @@ from pygame.locals import *
 from random import randrange
 import plataform
 import movimento
+import menu
 
 # ===============   INICIALIZAÇÃO   ===============
 pygame.init()
