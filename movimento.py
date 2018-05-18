@@ -67,4 +67,4 @@ class bonequinho(pygame.sprite.Sprite):
         else:
             self.rect.move_ip(-1,0)
             return self
-    
+        

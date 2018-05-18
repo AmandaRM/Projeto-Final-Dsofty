@@ -92,36 +92,64 @@ while rodando:
 
  #===========================COLLIDE=========================================#           
             
-
-<<<<<<< HEAD
-=======
+    def collide(self, x, y, plataform):
+       if pygame.sprite.collide_rect(self, plataform.rect):
+           if  xvel > 0:
+               self.rect.right = plataform.rect.left
+           if xvel< 0 :
+               self.rect.left = plataform.rect.right
+           if yvel > 0:
+               self.rect.bottom=plataform.rect.top
+               self.onGround=True 
+               self.yvel=0
+           if yvel<0:
+               self.rect.top = plataform.rect.bottom
+               
+               
+       for e in Plataforma:
+        if pygame.sprite.collide_rect(bonzinho, e.rect):
+           if  bonzinho.rect.x  > 0:
+               bonzinho.rect.right = e.rect.left
+               bonzinho.vel=0
+           if bonzinho.rect.x < 0 :
+               bonzinho.rect.left = e.rect.right
+               bonzinho.vel=0
+           if bonzinho.rect.y > 0:
+               bonzinho.rect.bottom= e.rect.top
+               bonzinho.onGround=True 
+               bonzinho.vel=0
+           if bonzinho.rect.y < 0:
+               bonzinho.rect.top = e.rect.bottom
+               bonzinho.vel=0
+               
+               
+       
+    
 #  if pygame.sprite.spritecollide(Plataf, portal_group, True):
 #      continue
 #            
->>>>>>> 139b307121b89021b10f73024ff1ff4e64d6004c
-=======
->>>>>>> 0e5ffea201075fcb7a57b3d02080de173b2fbb19
 
-  if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
-      bonzinho.vel = 0
-      
-  if pygame.sprite.spritecollide(malvado, Plataforma, False):
-      malvado.vel = 0 
-      
-  if pygame.sprite.spritecollide(bonzinho, chao_group, False):
-      bonzinho.vel = 0
-      
-  if pygame.sprite.spritecollide(malvado, chao_group, False):
-      malvado.vel = 0
-      
-  if pygame.sprite.spritecollide(malvado, bonzinho_group, True):
-        malvado.vel = 0
-        gameover()
-        rodando  = False
-        
-  if pygame.sprite.spritecollide(portal,bonzinho_group, True):
-      malvado.vel = 0
-              
+
+#  if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
+#      bonzinho.vel = 0
+#      
+#  if pygame.sprite.spritecollide(malvado, Plataforma, False):
+#      malvado.vel = 0 
+#      
+#  if pygame.sprite.spritecollide(bonzinho, chao_group, False):
+#      bonzinho.vel = 0
+#      
+#  if pygame.sprite.spritecollide(malvado, chao_group, False):
+#      malvado.vel = 0
+#      
+#  if pygame.sprite.spritecollide(malvado, bonzinho_group, True):
+#        malvado.vel = 0
+#        gameover()
+#        rodando  = False
+#        
+#  if pygame.sprite.spritecollide(portal,bonzinho_group, True):
+#      malvado.vel = 0
+#              
 #  if pygame.sprite.spritecollide(portal, malvado_group, True) or  pygame.sprite.spritecollide(portal, bonzinho_group, True):
 #      malvado.vel = 0
 
