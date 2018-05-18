@@ -93,14 +93,12 @@ while rodando:
  #===========================COLLIDE=========================================#           
             
 
-<<<<<<< HEAD
-=======
+
+
 #  if pygame.sprite.spritecollide(Plataf, portal_group, True):
 #      continue
 #            
->>>>>>> 139b307121b89021b10f73024ff1ff4e64d6004c
-=======
->>>>>>> 0e5ffea201075fcb7a57b3d02080de173b2fbb19
+
 
   if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
       bonzinho.vel = 0
