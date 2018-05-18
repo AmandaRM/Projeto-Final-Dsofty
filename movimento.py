@@ -19,7 +19,7 @@ class bonequinho(pygame.sprite.Sprite):
         self.vel = vel
     
     def bom_UP(self):
-        if  self.rect.y>0:
+        if  self.rect.y>=0:
             self.vel-=10
             self.rect.move_ip(0,-10)
             self.rect.y+=self.vel

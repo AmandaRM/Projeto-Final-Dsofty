@@ -76,7 +76,7 @@ while rodando:
         if event.key == K_UP:
             bonzinho.image = pygame.image.load("adventurer_stand.png")
             
-            
+ #===========================COLLIDE=========================================#           
             
 
   if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
