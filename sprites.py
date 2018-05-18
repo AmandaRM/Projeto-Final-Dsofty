@@ -9,15 +9,15 @@ import menu
 # ===============   INICIALIZAÇÃO   ===============
 pygame.init()
 tela = pygame.display.set_mode((800, 600), 0, 32)
-pygame.display.set_caption('Nome do joguinho')
+pygame.display.set_caption('LEGO Galaxy')
 
 
 #fazendo o chão do jogo
-fundo = pygame.image.load("chão_original.png").convert()
+fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
 #fazer virar grupo
 
 # cria o bonzinho 
-bonzinho = movimento.bonequinho("adventurer_stand.png",350, 450)
+bonzinho = movimento.bonequinho("adventurer_stand.png",10 ,500)
 bonzinho_group = pygame.sprite.Group()
 bonzinho_group.add(bonzinho)
 #cria o malvado
@@ -25,12 +25,13 @@ malvado= movimento.bonequinho("zombie_stand.png", 700, 1)
 malvado_group=pygame.sprite.Group()
 malvado_group.add(malvado)
 #cria o portal=objetivo
-portal=movimento.bonequinho("portal.png", 0, 0)
+portal=movimento.bonequinho("portal.png", 4, 0)
 portal_group = pygame.sprite.Group()
 portal_group.add(portal)
+portal_image=pygame.image.load("portal.png").convert()
 
 chao=movimento.bonequinho("chão.png", 0, 570)
-chao_group = pygame.sprite.Group()
+chao_group= pygame.sprite.Group()
 chao_group.add(chao)
 
 Plataforma=plataform.cria_Plataform_Aleatoria()
@@ -41,7 +42,7 @@ white = (255, 255, 255)
 def gameover():
     fonte=pygame.font.SysFont(None,25) #25 é o tamanho da mensagem
     text=fonte.render("Fim de jogo", True, white)
-    tela.blit(text,(150,250))
+    return tela.blit(text,(400,400))
     
 cont=0
 # ===============   LOOPING PRINCIPAL   ===============
@@ -51,11 +52,17 @@ relogio=pygame.time.Clock()
 while rodando:
 
   tempo=relogio.tick(30) 
+
+  portal=movimento.bonequinho("portal.png", 0, 0)
+  portal_group= pygame.sprite.Group()
+  #portal=pygame.transform.rotate(, 90) =================================
+  portal_group.add(portal)
+
     
   for event in pygame.event.get():  #pega lista de eventos
     fonte=pygame.font.SysFont(None,25, None)
-    #text=fonte.render(cont, "TIME: ", True, white)
-    #tela.blit(text, (20,20)) 
+#    text=fonte.render(cont, "TIME: ", True, white)
+#    tela.blit(text, (20,20)) 
    
     if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
       rodando = False            #executa a função de sistema "exit"
@@ -76,27 +83,35 @@ while rodando:
         if event.key == K_UP:
             bonzinho.image = pygame.image.load("adventurer_stand.png")
             
+<<<<<<< HEAD
  #===========================COLLIDE=========================================#           
             
 
+=======
+#  if pygame.sprite.spritecollide(Plataf, portal_group, True):
+#      continue
+#            
+>>>>>>> 139b307121b89021b10f73024ff1ff4e64d6004c
   if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
       bonzinho.vel = 0
       
   if pygame.sprite.spritecollide(malvado, Plataforma, False):
       malvado.vel = 0 
       
-  if pygame.sprite.spritecollide(bonzinho, chao_group, False):
+  if pygame.sprite.spritecollide(bonzinho, chaos_group, False):
       bonzinho.vel = 0
       
-  if pygame.sprite.spritecollide(malvado, chao_group, False):
+  if pygame.sprite.spritecollide(malvado, chaos_group, False):
       malvado.vel = 0
       
   if pygame.sprite.spritecollide(malvado, bonzinho_group, True):
+        malvado.vel = 0
+        gameover()
+  if pygame.sprite.spritecollide(portal,bonzinho_group, True):
       malvado.vel = 0
-      print(gameover())
-      
-  if pygame.sprite.spritecollide(portal, malvado_group, True) or  pygame.sprite.spritecollide(portal, bonzinho_group, True):
-      malvado.vel = 0
+              
+#  if pygame.sprite.spritecollide(portal, malvado_group, True) or  pygame.sprite.spritecollide(portal, bonzinho_group, True):
+#      malvado.vel = 0
 
       #----------------------passar de fase---------------------
       
@@ -111,17 +126,22 @@ while rodando:
       bonzinho=movimento.bonequinho.bom_RIGHT(bonzinho)
       bonzinho.image = pygame.image.load("adventurer_walk1.png")
 
-  elif pressed_keys[K_a]:
-      malvado=movimento.bonequinho.bom_LEFT(malvado)
-  elif pressed_keys[K_d]:
-      malvado=movimento.bonequinho.bom_RIGHT(malvado)  
+#  elif pressed_keys[K_a]:
+#      malvado=movimento.bonequinho.bom_LEFT(malvado)
+#  elif pressed_keys[K_d]:
+#      malvado=movimento.bonequinho.bom_RIGHT(malvado)  
 
-  elif bonzinho.rect.y>=0:
-      gameover()
-  
-
-
+  if bonzinho.rect.x > malvado.rect.x:
+     malvado=movimento.bonequinho.bom_RIGHT_light(malvado)
+     #bonzinho.image = pygame.image.load("adventurer_walk2.png")
+  if bonzinho.rect.x < malvado.rect.x:
+     malvado=movimento.bonequinho.bom_LEFT_light(malvado)
+     #bonzinho.image = pygame.image.load("adventurer_walk2.png") 
+  if bonzinho.rect.y < malvado.rect.y:
+      malvado=movimento.bonequinho.bom_UP_light(malvado)
+      
   #gera saídas
+
   tela.blit(fundo, (0, -85))
   chao_group.draw(tela)
   bonzinho_group.draw(tela)
@@ -131,10 +151,10 @@ while rodando:
   pygame.display.update()      #coloca a tela na janela
   
   bonzinho.rect.y+=bonzinho.vel
-  bonzinho.vel+=0.07
+  bonzinho.vel+=2
   
   malvado.rect.y+=malvado.vel
-  malvado.vel+=0.07
+  malvado.vel+=2
 
 cont+=1  
 #menu.game_menu()
