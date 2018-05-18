@@ -4,7 +4,6 @@ from pygame.locals import *
 from random import randrange
 import plataform
 import movimento
-#import menu
 
 # ===============   INICIALIZAÇÃO   ===============
 pygame.init()
@@ -92,6 +91,7 @@ while rodando:
 
  #===========================COLLIDE=========================================#           
             
+<<<<<<< HEAD
     def collide(self, x, y, plataform):
        if pygame.sprite.collide_rect(self, plataform.rect):
            if  xvel > 0:
@@ -128,6 +128,15 @@ while rodando:
 #  if pygame.sprite.spritecollide(Plataf, portal_group, True):
 #      continue
 #            
+=======
+
+
+
+#  if pygame.sprite.spritecollide(Plataf, portal_group, True):
+#      continue
+#            
+
+>>>>>>> 71e53568e9883d4eed7391e6f79b100cd770e181
 
 
 #  if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
