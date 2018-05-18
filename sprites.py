@@ -17,7 +17,7 @@ fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
 #fazer virar grupo
 
 # cria o bonzinho 
-bonzinho = movimento.bonequinho("adventurer_stand.png",10 ,500)
+bonzinho = movimento.bonequinho("adventurer_stand.png",700 ,520)
 bonzinho_group = pygame.sprite.Group()
 bonzinho_group.add(bonzinho)
 #cria o malvado
@@ -79,9 +79,6 @@ while rodando:
         if event.key == K_UP:
              bonzinho=movimento.bonequinho.bom_UP(bonzinho)
              bonzinho.image = pygame.image.load("adventurer_jump.png")
-    if event.type == pygame.KEYDOWN:
-        if event.key == K_w:
-             malvado=movimento.bonequinho.bom_UP(malvado)
     if event.type == pygame.KEYUP:
         if event.key == K_RIGHT:
             bonzinho.image = pygame.image.load("adventurer_stand.png")
@@ -140,12 +137,16 @@ while rodando:
 
   if bonzinho.rect.x > malvado.rect.x:
      malvado=movimento.bonequinho.bom_RIGHT_light(malvado)
-     #bonzinho.image = pygame.image.load("adventurer_walk2.png")
+     malvado.image = pygame.image.load("zombie_walk1.png")
   if bonzinho.rect.x < malvado.rect.x:
      malvado=movimento.bonequinho.bom_LEFT_light(malvado)
-     #bonzinho.image = pygame.image.load("adventurer_walk2.png") 
+     malvado.image = pygame.image.load("zombie_walk2.png") 
   if bonzinho.rect.y < malvado.rect.y:
       malvado=movimento.bonequinho.bom_UP_light(malvado)
+      malvado.image = pygame.image.load("zombie_jump.png") 
+      
+
+      
       
   #gera saídas
      #coloca a tela na janela
