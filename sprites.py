@@ -50,6 +50,14 @@ cont=0
 rodando = True
 relogio=pygame.time.Clock()
 while rodando:
+    
+  tela.blit(fundo, (0, -85))
+  chao_group.draw(tela)
+  bonzinho_group.draw(tela)
+  malvado_group.draw(tela)
+  portal_group.draw(tela)
+  Plataforma.draw(tela)
+  pygame.display.update() 
 
   tempo=relogio.tick(30) 
 
@@ -104,6 +112,8 @@ while rodando:
   if pygame.sprite.spritecollide(malvado, bonzinho_group, True):
         malvado.vel = 0
         gameover()
+        rodando  = False
+        
   if pygame.sprite.spritecollide(portal,bonzinho_group, True):
       malvado.vel = 0
               
@@ -138,14 +148,7 @@ while rodando:
       malvado=movimento.bonequinho.bom_UP_light(malvado)
       
   #gera saídas
-
-  tela.blit(fundo, (0, -85))
-  chao_group.draw(tela)
-  bonzinho_group.draw(tela)
-  malvado_group.draw(tela)
-  portal_group.draw(tela)
-  Plataforma.draw(tela)
-  pygame.display.update()      #coloca a tela na janela
+     #coloca a tela na janela
   
   bonzinho.rect.y+=bonzinho.vel
   bonzinho.vel+=2
