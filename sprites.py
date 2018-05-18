@@ -4,7 +4,6 @@ from pygame.locals import *
 from random import randrange
 import plataform
 import movimento
-import menu
 #import menu
 
 # ===============   INICIALIZAÇÃO   ===============
@@ -62,16 +61,12 @@ while rodando:
 
   tempo=relogio.tick(30) 
 
-  portal=movimento.bonequinho("portal.png", 0, 0)
   portal=movimento.bonequinho("portal.png", 0,0)
   #portal=pygame.transform.rotate(, 90)=================================
   portal_group= pygame.sprite.Group()
-  #portal=pygame.transform.rotate(, 90) =================================
   portal_group.add(portal)
 
     
-  for event in pygame.event.get():  #pega lista de eventos
-    fonte=pygame.font.SysFont(None,25, None)
   for event in pygame.event.get():  #pega lista de eventos 0)
 
 #  fonte=pygame.font.SysFont(None,25, None)
@@ -97,16 +92,18 @@ while rodando:
         if event.key == K_UP:
             bonzinho.image = pygame.image.load("adventurer_stand.png")
             
-<<<<<<< HEAD
 
  #===========================COLLIDE=========================================#           
             
 
+<<<<<<< HEAD
 =======
 #  if pygame.sprite.spritecollide(Plataf, portal_group, True):
 #      continue
 #            
 >>>>>>> 139b307121b89021b10f73024ff1ff4e64d6004c
+=======
+>>>>>>> 0e5ffea201075fcb7a57b3d02080de173b2fbb19
 
   if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
       bonzinho.vel = 0
