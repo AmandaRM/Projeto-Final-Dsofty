@@ -100,6 +100,7 @@ while rodando:
 #      continue
 #            
 >>>>>>> 139b307121b89021b10f73024ff1ff4e64d6004c
+
   if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
       bonzinho.vel = 0
       
