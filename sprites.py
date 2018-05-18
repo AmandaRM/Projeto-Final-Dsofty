@@ -5,6 +5,7 @@ from random import randrange
 import plataform
 import movimento
 import menu
+#import menu
 
 # ===============   INICIALIZAÇÃO   ===============
 pygame.init()
@@ -62,6 +63,8 @@ while rodando:
   tempo=relogio.tick(30) 
 
   portal=movimento.bonequinho("portal.png", 0, 0)
+  portal=movimento.bonequinho("portal.png", 0,0)
+  #portal=pygame.transform.rotate(, 90)=================================
   portal_group= pygame.sprite.Group()
   #portal=pygame.transform.rotate(, 90) =================================
   portal_group.add(portal)
@@ -69,6 +72,9 @@ while rodando:
     
   for event in pygame.event.get():  #pega lista de eventos
     fonte=pygame.font.SysFont(None,25, None)
+  for event in pygame.event.get():  #pega lista de eventos 0)
+
+#  fonte=pygame.font.SysFont(None,25, None)
 #    text=fonte.render(cont, "TIME: ", True, white)
 #    tela.blit(text, (20,20)) 
    
@@ -92,6 +98,7 @@ while rodando:
             bonzinho.image = pygame.image.load("adventurer_stand.png")
             
 <<<<<<< HEAD
+
  #===========================COLLIDE=========================================#           
             
 
