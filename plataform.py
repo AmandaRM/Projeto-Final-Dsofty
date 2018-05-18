@@ -43,15 +43,16 @@ def cria_Plataform_Aleatoria():
     plataformas_group=pygame.sprite.Group()
     i=0
     x=[]
-    x.append(random.randint(0,200))
-    x.append(random.randint(200,400))
-    x.append(random.randint(400,600))
-    x.append(random.randint(600,800))
+    x.append(random.randint(100,200))
+    x.append(random.randint(250,400))
+    x.append(random.randint(450,600))
+    x.append(random.randint(650,700))
     y=[]
-    y.append(random.randint(0,100))
-    y.append(random.randint(200,300))
-    y.append(random.randint(400,500))
-    while i<3:
+    y.append(random.randint(50,190))
+    y.append(random.randint(220,300))
+    y.append(random.randint(340,390))
+    y.append(random.randint(440,490))
+    while i<4:
         plataforma=Plataform("plataform_de_pedra_reta_pequena.png", [x[0], y[i]])
         plataformas_group.add(plataforma)
         
@@ -60,7 +61,19 @@ def cria_Plataform_Aleatoria():
         
         plataforma1=Plataform("plataform_de_pedra_reta_pequena.png", [x[2], y[i]])
         plataformas_group.add(plataforma1)
+        
+        plataforma1=Plataform("plataform_de_pedra_reta_pequena.png", [x[3], y[i]])
+        plataformas_group.add(plataforma1)
         i+=1
+        
+#    for i in range(len(plataformas_group)): =========== não sei como substitui uma plataformas por outra sem perder o x e o y da anterior. Queria salvar as coordenardas e usar nessa nova plataforma.
+#        aleatorio=random.randint(0,len(plataformas_group))
+#        if i == aleatorio:
+#            x_salvo=plataformas_group.(i)(x)
+#            y_salvo=plataformas_group(i)(y)
+#            plataformas_group.remove(plataformas_group(i))
+#            plataforma_new=Plataform("brickYellow12.png", [x_salvo, y_salvo])
+#            plataformas_group.add(plataforma_new)
     return plataformas_group
 
         
