@@ -4,7 +4,7 @@ from pygame.locals import *
 from random import randrange
 import plataform
 import movimento
-import menu
+#import menu
 
 # ===============   INICIALIZAÇÃO   ===============
 pygame.init()
@@ -17,7 +17,7 @@ fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
 #fazer virar grupo
 
 # cria o bonzinho 
-bonzinho = movimento.bonequinho("adventurer_stand.png",10 ,500)
+bonzinho = movimento.bonequinho("adventurer_stand.png",700 ,520)
 bonzinho_group = pygame.sprite.Group()
 bonzinho_group.add(bonzinho)
 #cria o malvado
@@ -50,17 +50,26 @@ cont=0
 rodando = True
 relogio=pygame.time.Clock()
 while rodando:
+    
+  tela.blit(fundo, (0, -85))
+  chao_group.draw(tela)
+  bonzinho_group.draw(tela)
+  malvado_group.draw(tela)
+  portal_group.draw(tela)
+  Plataforma.draw(tela)
+  pygame.display.update() 
 
   tempo=relogio.tick(30) 
 
-  portal=movimento.bonequinho("portal.png", 0, 0)
+  portal=movimento.bonequinho("portal.png", 0,0)
+  #portal=pygame.transform.rotate(, 90)=================================
   portal_group= pygame.sprite.Group()
-  #portal=pygame.transform.rotate(, 90) =================================
   portal_group.add(portal)
 
     
-  for event in pygame.event.get():  #pega lista de eventos
-    fonte=pygame.font.SysFont(None,25, None)
+  for event in pygame.event.get():  #pega lista de eventos 0)
+
+#  fonte=pygame.font.SysFont(None,25, None)
 #    text=fonte.render(cont, "TIME: ", True, white)
 #    tela.blit(text, (20,20)) 
    
@@ -70,9 +79,6 @@ while rodando:
         if event.key == K_UP:
              bonzinho=movimento.bonequinho.bom_UP(bonzinho)
              bonzinho.image = pygame.image.load("adventurer_jump.png")
-    if event.type == pygame.KEYDOWN:
-        if event.key == K_w:
-             malvado=movimento.bonequinho.bom_UP(malvado)
     if event.type == pygame.KEYUP:
         if event.key == K_RIGHT:
             bonzinho.image = pygame.image.load("adventurer_stand.png")
@@ -83,24 +89,36 @@ while rodando:
         if event.key == K_UP:
             bonzinho.image = pygame.image.load("adventurer_stand.png")
             
+
+ #===========================COLLIDE=========================================#           
+            
+
+<<<<<<< HEAD
+=======
 #  if pygame.sprite.spritecollide(Plataf, portal_group, True):
 #      continue
 #            
+>>>>>>> 139b307121b89021b10f73024ff1ff4e64d6004c
+=======
+>>>>>>> 0e5ffea201075fcb7a57b3d02080de173b2fbb19
+
   if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
       bonzinho.vel = 0
       
   if pygame.sprite.spritecollide(malvado, Plataforma, False):
       malvado.vel = 0 
       
-  if pygame.sprite.spritecollide(bonzinho, chaos_group, False):
+  if pygame.sprite.spritecollide(bonzinho, chao_group, False):
       bonzinho.vel = 0
       
-  if pygame.sprite.spritecollide(malvado, chaos_group, False):
+  if pygame.sprite.spritecollide(malvado, chao_group, False):
       malvado.vel = 0
       
   if pygame.sprite.spritecollide(malvado, bonzinho_group, True):
         malvado.vel = 0
         gameover()
+        rodando  = False
+        
   if pygame.sprite.spritecollide(portal,bonzinho_group, True):
       malvado.vel = 0
               
@@ -127,22 +145,19 @@ while rodando:
 
   if bonzinho.rect.x > malvado.rect.x:
      malvado=movimento.bonequinho.bom_RIGHT_light(malvado)
-     #bonzinho.image = pygame.image.load("adventurer_walk2.png")
+     malvado.image = pygame.image.load("zombie_walk1.png")
   if bonzinho.rect.x < malvado.rect.x:
      malvado=movimento.bonequinho.bom_LEFT_light(malvado)
-     #bonzinho.image = pygame.image.load("adventurer_walk2.png") 
+     malvado.image = pygame.image.load("zombie_walk2.png") 
   if bonzinho.rect.y < malvado.rect.y:
       malvado=movimento.bonequinho.bom_UP_light(malvado)
+      malvado.image = pygame.image.load("zombie_jump.png") 
+      
+
+      
       
   #gera saídas
-
-  tela.blit(fundo, (0, -85))
-  chao_group.draw(tela)
-  bonzinho_group.draw(tela)
-  malvado_group.draw(tela)
-  portal_group.draw(tela)
-  Plataforma.draw(tela)
-  pygame.display.update()      #coloca a tela na janela
+     #coloca a tela na janela
   
   bonzinho.rect.y+=bonzinho.vel
   bonzinho.vel+=2
