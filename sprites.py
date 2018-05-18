@@ -91,9 +91,15 @@ while rodando:
         if event.key == K_UP:
             bonzinho.image = pygame.image.load("adventurer_stand.png")
             
+<<<<<<< HEAD
+ #===========================COLLIDE=========================================#           
+            
+
+=======
 #  if pygame.sprite.spritecollide(Plataf, portal_group, True):
 #      continue
 #            
+>>>>>>> 139b307121b89021b10f73024ff1ff4e64d6004c
   if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
       bonzinho.vel = 0
       
