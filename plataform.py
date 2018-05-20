@@ -69,10 +69,11 @@ def cria_Plataform_Aleatoria():
         
     for i in range(len(plataformas_group)): #=========== não sei como substitui uma plataformas por outra sem perder o x e o y da anterior. Queria salvar as coordenardas e usar nessa nova plataforma.
         aleatorio=random.randint(0,len(plataformas_group))
+        
         if i == aleatorio:
-            x_salvo=plataformas_group(i)(x)
-            y_salvo=plataformas_group(i)(y)
-            plataformas_group.remove(plataformas_group(i))
+            x_salvo=plataformas_group[i][x]
+            y_salvo=plataformas_group[i][y]
+            plataformas_group.remove(plataformas_group[i])
             plataforma_new=Plataform("brickYellow12.png", [x_salvo, y_salvo])
             plataformas_group.add(plataforma_new)
     return plataformas_group
