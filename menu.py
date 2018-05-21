@@ -21,9 +21,16 @@ iniciar_jogo_group.add(iniciar_jogo)
 nome_jogo= movimento.bonequinho("starlego.png", 125, 180)
 nome_jogo_group=pygame.sprite.Group()
 nome_jogo_group.add(nome_jogo)
-
-
-
+        
+events = pygame.event.get()
+for event in events:
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_n:
+            #bota o comando para sair
+        if event.key == pygame.K_s:
+            #bota comando para entrar na segunda tela
+    
+            
 tela2.blit(fundo, (0, 0))
 nome_jogo_group.draw(tela2)
 pygame.display.update() 
