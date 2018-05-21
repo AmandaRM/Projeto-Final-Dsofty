@@ -166,9 +166,11 @@ while rodando:
       malvado.vel = 0
       
   if pygame.sprite.spritecollide(malvado, bonzinho_group, True):
-        malvado.vel = 0
-        gameover()
-        rodando  = False
+        fonte=pygame.font.SysFont(None,80) #25 é o tamanho da mensagem
+        text=fonte.render("Game Over", True, white)
+        tela.blit(text,(400,400))
+        pygame.display.update() 
+        delay (1000)
         
   if pygame.sprite.spritecollide(portal,bonzinho_group, True):
       malvado.vel = 0
