@@ -21,7 +21,7 @@ bonzinho = movimento.bonequinho("adventurer_stand.png",700 ,520)
 bonzinho_group = pygame.sprite.Group()
 bonzinho_group.add(bonzinho)
 #cria o malvado
-malvado= movimento.bonequinho("zombie_stand.png", 700, 1)
+malvado= movimento.bonequinho("zombie_stand.png", 200, 1)
 malvado_group=pygame.sprite.Group()
 malvado_group.add(malvado)
 #cria o portal=objetivo
@@ -34,7 +34,7 @@ chao=movimento.bonequinho("chão.png", 0, 570)
 chao_group= pygame.sprite.Group()
 chao_group.add(chao)
 
-Plataforma=plataform.cria_Plataform_Aleatoria()
+Plataforma, Plataformas_Amarelas, Plataformas_Vermelhas =plataform.cria_Plataform_nAleatoria()
 
 black=(0,0,0)
 white = (255, 255, 255)
@@ -51,15 +51,24 @@ rodando = True
 relogio=pygame.time.Clock()
 while rodando:
     
+  tempo=relogio.tick(30) 
+    
   tela.blit(fundo, (0, -85))
   chao_group.draw(tela)
   bonzinho_group.draw(tela)
   malvado_group.draw(tela)
   portal_group.draw(tela)
   Plataforma.draw(tela)
+  Plataformas_Amarelas.draw(tela)
+  Plataformas_Vermelhas.draw(tela)
+  
+  fonte=pygame.font.SysFont(None,25, None)
+  text=fonte.render( "TIME: ", True, white)
+#  text2=fonte.render(cont , True, white)
+  tela.blit(text, (700,20)) 
+#  tela.blit(text, (720,20)) 
+  
   pygame.display.update() 
-
-  tempo=relogio.tick(30) 
 
   portal=movimento.bonequinho("portal.png", 0,0)
   #portal=pygame.transform.rotate(, 90)=================================
@@ -69,9 +78,7 @@ while rodando:
     
   for event in pygame.event.get():  #pega lista de eventos 0)
 
-#  fonte=pygame.font.SysFont(None,25, None)
-#    text=fonte.render(cont, "TIME: ", True, white)
-#    tela.blit(text, (20,20)) 
+
    
     if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
       rodando = False            #executa a função de sistema "exit"
@@ -136,10 +143,18 @@ while rodando:
 #      continue
 #            
 
-
+  for e in Plataformas_Vermelhas:
+      e=plataform.move_plataforma(e, 400, 200)
 
   if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
       bonzinho.vel = 0
+      
+      
+  if pygame.sprite.spritecollide(bonzinho, Plataformas_Amarelas, False):
+      bonzinho.vel = -3
+    
+  if pygame.sprite.spritecollide(bonzinho,Plataformas_Vermelhas, True):
+      bonzinho.vel=2
       
   if pygame.sprite.spritecollide(malvado, Plataforma, False):
       malvado.vel = 0 
