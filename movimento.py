@@ -38,33 +38,33 @@ class bonequinho(pygame.sprite.Sprite):
 
     def bom_LEFT(self):
         if 0< self.rect.x <=750:
+            self.rect.move_ip(-5,0) #move_ip(x,y)
+            return self
+        else:
+            self.rect.move_ip(5,0)
+            return self
+                
+    def bom_LEFT_light(self):
+        if 0< self.rect.x <=750:
             self.rect.move_ip(-2,0) #move_ip(x,y)
             return self
         else:
             self.rect.move_ip(2,0)
             return self
-                
-    def bom_LEFT_light(self):
-        if 0< self.rect.x <=750:
-            self.rect.move_ip(-1,0) #move_ip(x,y)
-            return self
-        else:
-            self.rect.move_ip(1,0)
-            return self
 
     def bom_RIGHT(self):
+        if 0<= self.rect.x <750:
+            self.rect.move_ip(5,0) #move_ip(x,y)
+            return self
+        else:
+            self.rect.move_ip(-5,0)
+            return self
+        
+    def bom_RIGHT_light(self):
         if 0<= self.rect.x <750:
             self.rect.move_ip(2,0) #move_ip(x,y)
             return self
         else:
             self.rect.move_ip(-2,0)
-            return self
-        
-    def bom_RIGHT_light(self):
-        if 0<= self.rect.x <750:
-            self.rect.move_ip(1,0) #move_ip(x,y)
-            return self
-        else:
-            self.rect.move_ip(-1,0)
             return self
         
