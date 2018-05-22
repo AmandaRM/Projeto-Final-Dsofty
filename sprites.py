@@ -111,7 +111,7 @@ while rodando:
                self.yvel=0
            if yvel<0:
                self.rect.top = plataform.rect.bottom
-               
+    collide()           
                
 #       for e in Plataforma:
 #        if pygame.sprite.collide_rect(bonzinho, e.rect):
