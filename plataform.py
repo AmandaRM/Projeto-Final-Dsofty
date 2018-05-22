@@ -131,6 +131,7 @@ def cria_Plataform_nAleatoria():
      plataformas_group=pygame.sprite.Group()
      plataformas_Amarelas_group=pygame.sprite.Group()
      plataformas_Vermelha_group=pygame.sprite.Group()
+     plataformas_Verde_group=pygame.sprite.Group()
      plataforma1=Plataform("plataform_de_pedra_reta_pequena.png", [50, 400])        
      plataformas_group.add(plataforma1)
      plataforma2=Plataform("plataform_de_pedra_reta_pequena.png", [150, 100])        
@@ -146,8 +147,8 @@ def cria_Plataform_nAleatoria():
      plataforma7=Plataform("plataform_de_pedra_reta_pequena.png", [550, 100])        
      plataformas_group.add(plataforma7)
      
-     plataforma8=Plataform("plataform_de_pedra_reta_pequena.png", [50, 200])        
-     plataformas_group.add(plataforma8)
+     plataforma8=Plataform("brickGreen10.png", [50, 200])        
+     plataformas_Verde_group.add(plataforma8)
      plataforma9=Plataform("plataform_de_pedra_reta_pequena.png", [150, 300])        
      plataformas_group.add(plataforma9)
      plataforma10=Plataform("plataform_de_pedra_reta_pequena.png", [250, 200])        
@@ -167,7 +168,7 @@ def cria_Plataform_nAleatoria():
      plataformas_Vermelha_group.add(plataforma16)
      plataforma17=Plataform("plataform_de_pedra_reta_pequena.png", [550, 500])        
      plataformas_group.add(plataforma17)
-     return plataformas_group, plataformas_Amarelas_group, plataformas_Vermelha_group
+     return plataformas_group, plataformas_Amarelas_group, plataformas_Vermelha_group, plataformas_Verde_group
  
 def move_plataforma(self, right, left):
     if  self.rect.y>0:

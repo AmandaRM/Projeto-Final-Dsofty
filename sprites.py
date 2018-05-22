@@ -34,7 +34,7 @@ chao=movimento.bonequinho("chão.png", 0, 570)
 chao_group= pygame.sprite.Group()
 chao_group.add(chao)
 
-Plataforma, Plataformas_Amarelas, Plataformas_Vermelhas =plataform.cria_Plataform_nAleatoria()
+Plataforma, Plataformas_Amarelas, Plataformas_Vermelhas, Plataformas_Verdes =plataform.cria_Plataform_nAleatoria()
 
 black=(0,0,0)
 white = (255, 255, 255)
@@ -51,7 +51,8 @@ rodando = True
 relogio=pygame.time.Clock()
 while rodando:
     
-  tempo=relogio.tick(30) 
+  tempo=relogio.tick(30)
+  tempo_tela = 1000/tempo
     
   tela.blit(fundo, (0, -85))
   chao_group.draw(tela)
@@ -61,10 +62,11 @@ while rodando:
   Plataforma.draw(tela)
   Plataformas_Amarelas.draw(tela)
   Plataformas_Vermelhas.draw(tela)
+  Plataformas_Verdes.draw(tela)
   
   fonte=pygame.font.SysFont(None,25, None)
   text=fonte.render( "TIME: ", True, white)
-#  text2=fonte.render(cont , True, white)
+  text2=fonte.render(cont , True, white)
   tela.blit(text, (700,20)) 
 #  tela.blit(text, (720,20)) 
   
@@ -146,9 +148,13 @@ while rodando:
   for e in Plataformas_Vermelhas:
       e=plataform.move_plataforma(e, 400, 200)
 
-  if pygame.sprite.spritecollide(bonzinho, Plataforma, False):
-      bonzinho.vel = 0
-      
+  listaColididos = pygame.sprite.spritecollide(bonzinho, Plataforma, False)
+  if listaColididos:
+      if listaColididos[0].rect.y > bonzinho.rect.y+bonzinho.rect.height:
+          bonzinho.vel = 0
+     
+  if pygame.sprite.spritecollide(bonzinho, Plataformas_Verdes, True): #collide só para o pé do bicho
+      bonzinho.vel = 3
       
   if pygame.sprite.spritecollide(bonzinho, Plataformas_Amarelas, False):
       bonzinho.vel = -3
@@ -166,9 +172,12 @@ while rodando:
       malvado.vel = 0
       
   if pygame.sprite.spritecollide(malvado, bonzinho_group, True):
-        malvado.vel = 0
-        gameover()
-        rodando  = False
+        fonte=pygame.font.SysFont(None,80) #25 é o tamanho da mensagem
+        text=fonte.render("Game Over", True, white)
+        tela.blit(text,(400,400))
+        pygame.display.update() 
+        tempo.wait(100)
+        
         
   if pygame.sprite.spritecollide(portal,bonzinho_group, True):
       malvado.vel = 0
