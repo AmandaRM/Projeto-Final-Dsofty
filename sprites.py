@@ -170,6 +170,7 @@ while rodando:
              if listaColididos[0].rect.y > bonzinho.rect.y+bonzinho.rect.height:
                  bonzinho.vel = 0
             
+<<<<<<< HEAD
          if pygame.sprite.spritecollide(bonzinho, Plataformas_Verdes, True): #collide só para o pé do bicho
              bonzinho.vel = 3
              
@@ -194,6 +195,37 @@ while rodando:
                tela.blit(text,(400,400))
                pygame.display.update() 
                tempo.wait(100)
+=======
+    def collide(self, x, y, plataform):
+       if pygame.sprite.collide_rect(self, plataform.rect):
+           if  xvel > 0:
+               self.rect.right = plataform.rect.left
+           if xvel< 0 :
+               self.rect.left = plataform.rect.right
+           if yvel > 0:
+               self.rect.bottom=plataform.rect.top
+               self.onGround=True 
+               self.yvel=0
+           if yvel<0:
+               self.rect.top = plataform.rect.bottom
+    collide()           
+               
+#       for e in Plataforma:
+#        if pygame.sprite.collide_rect(bonzinho, e.rect):
+#           if  bonzinho.rect.x  > 0:
+#               bonzinho.rect.right = e.rect.left
+#               bonzinho.vel=0
+#           if bonzinho.rect.x < 0 :
+#               bonzinho.rect.left = e.rect.right
+#               bonzinho.vel=0
+#           if bonzinho.rect.y > 0:
+#               bonzinho.rect.bottom= e.rect.top
+#               bonzinho.onGround=True 
+#               bonzinho.vel=0
+#           if bonzinho.rect.y < 0:
+#               bonzinho.rect.top = e.rect.bottom
+#               bonzinho.vel=0
+>>>>>>> 0fc8cffa6d79aff08c9ee723a0f9f2454ddb23c8
                
                
          if pygame.sprite.spritecollide(portal,bonzinho_group, True):
