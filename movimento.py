@@ -6,7 +6,7 @@ Created on Fri May  4 08:03:19 2018
 """
 import pygame
 # ===============      CLASSES      ===============
-    
+
 
 class bonequinho(pygame.sprite.Sprite):
     def __init__(self, arquivo_imagem, pos_x, pos_y):
@@ -19,15 +19,14 @@ class bonequinho(pygame.sprite.Sprite):
         self.vel = vel
     
     def bom_UP(self):
-        if  self.rect.y>=0:
-            self.vel-=10
-            self.rect.move_ip(0,-10)
-
-        if  self.rect.y>0:
-            self.vel-=9
-            self.rect.move_ip(0,-3)
-            self.rect.y+=self.vel
-            return self
+       if  self.rect.y>=0:
+           self.vel-=12
+           self.rect.move_ip(0,-10)
+       if  self.rect.y>0:
+           self.vel-=9
+           self.rect.move_ip(0,-3)
+           self.rect.y+=self.vel
+           return self
         
     def bom_UP_light(self):
         if  self.rect.y>0:
@@ -68,3 +67,4 @@ class bonequinho(pygame.sprite.Sprite):
             self.rect.move_ip(-2,0)
             return self
         
+

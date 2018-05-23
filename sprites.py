@@ -4,7 +4,7 @@ from pygame.locals import *
 from random import randrange
 import plataform
 import movimento
-import menu
+
 
 # ===============   INICIALIZAÇÃO   ===============
 pygame.init()
@@ -65,6 +65,7 @@ while rodando:
           nome_jogo_group.add(nome_jogo)
           tela2.blit(fundo, (0, 0))
           nome_jogo_group.draw(tela2)
+         # iniciar_jogo_group.draw(tela2)
           
           for event in pygame.event.get():
           
@@ -107,8 +108,9 @@ while rodando:
                 rodando = False            #executa a função de sistema "exit"
              if event.type == pygame.KEYDOWN:
                  if event.key == K_UP:
-                      bonzinho=movimento.bonequinho.bom_UP(bonzinho)
-                      bonzinho.image = pygame.image.load("adventurer_jump.png")
+                     if pygame.sprite.spritecollide(bonzinho, Plataforma, False) or pygame.sprite.spritecollide(bonzinho, chao_group, False) or pygame.sprite.spritecollide(bonzinho,Plataformas_Vermelhas, True) or pygame.sprite.spritecollide(bonzinho, Plataformas_Amarelas, False):
+                         bonzinho=movimento.bonequinho.bom_UP(bonzinho)
+                         bonzinho.image = pygame.image.load("adventurer_jump.png")
              if event.type == pygame.KEYUP:
                  if event.key == K_RIGHT:
                      bonzinho.image = pygame.image.load("adventurer_stand.png")
@@ -167,24 +169,45 @@ while rodando:
     
          listaColididos = pygame.sprite.spritecollide(bonzinho, Plataforma, False)
          if listaColididos:
-             if listaColididos[0].rect.y > bonzinho.rect.y+bonzinho.rect.height:
+             if listaColididos[0].rect.top > bonzinho.rect.top:
                  bonzinho.vel = 0
-            
-<<<<<<< HEAD
-         if pygame.sprite.spritecollide(bonzinho, Plataformas_Verdes, True): #collide só para o pé do bicho
-             bonzinho.vel = 3
+                 bonzinho.rect.bottom=listaColididos[0].rect.top
+             if listaColididos[0].rect.bottom > bonzinho.rect.top:
+                 bonzinho.vel=3
              
-         if pygame.sprite.spritecollide(bonzinho, Plataformas_Amarelas, False):
-             bonzinho.vel = -3
+         condicao=True
+         lista = pygame.sprite.spritecollide(bonzinho, Plataformas_Verdes, condicao) #collide só para o pé do bicho
+         if lista:
+             if lista[0].rect.bottom > bonzinho.rect.top:
+                 condicao=False
+                 bonzinho.vel=3
+             else:
+                 condicao=True
+             
+         lista2 = pygame.sprite.spritecollide(bonzinho, Plataformas_Amarelas, False)
+         if lista2:
+             if lista2[0].rect.top > bonzinho.rect.top:
+                 bonzinho.vel=-3
+                 
+             if lista2[0].rect.bottom > bonzinho.rect.top:
+                 bonzinho.vel = 3
            
-         if pygame.sprite.spritecollide(bonzinho,Plataformas_Vermelhas, True):
-             bonzinho.vel=2
+         cond=True
+         lista3 = pygame.sprite.spritecollide(bonzinho,Plataformas_Vermelhas, cond)
+         if lista3:
+             if lista3[0].rect.bottom > bonzinho.rect.top:
+                 cond=False
+                 bonzinho.vel=3
+             else:
+                 cond=True
              
          if pygame.sprite.spritecollide(malvado, Plataforma, False):
              malvado.vel = 0 
              
-         if pygame.sprite.spritecollide(bonzinho, chao_group, False):
-             bonzinho.vel = 0
+         lista4 = pygame.sprite.spritecollide(bonzinho, chao_group, False)
+         if lista4:
+             if lista4[0].rect.top > bonzinho.rect.top:
+                 bonzinho.vel = 0
              
          if pygame.sprite.spritecollide(malvado, chao_group, False):
              malvado.vel = 0
@@ -195,20 +218,20 @@ while rodando:
                tela.blit(text,(400,400))
                pygame.display.update() 
                tempo.wait(100)
-=======
-    def collide(self, x, y, plataform):
-       if pygame.sprite.collide_rect(self, plataform.rect):
-           if  xvel > 0:
-               self.rect.right = plataform.rect.left
-           if xvel< 0 :
-               self.rect.left = plataform.rect.right
-           if yvel > 0:
-               self.rect.bottom=plataform.rect.top
-               self.onGround=True 
-               self.yvel=0
-           if yvel<0:
-               self.rect.top = plataform.rect.bottom
-    collide()           
+
+#def collide(self, x, y, plataform):
+#       if pygame.sprite.collide_rect(self, plataform.rect):
+#           if  xvel > 0:
+#               self.rect.right = plataform.rect.left
+#           if xvel< 0 :
+#               self.rect.left = plataform.rect.right
+#           if yvel > 0:
+#               self.rect.bottom=plataform.rect.top
+#               self.onGround=True 
+#               self.yvel=0
+#           if yvel<0:
+#               self.rect.top = plataform.rect.bottom
+#            
                
 #       for e in Plataforma:
 #        if pygame.sprite.collide_rect(bonzinho, e.rect):
@@ -225,7 +248,7 @@ while rodando:
 #           if bonzinho.rect.y < 0:
 #               bonzinho.rect.top = e.rect.bottom
 #               bonzinho.vel=0
->>>>>>> 0fc8cffa6d79aff08c9ee723a0f9f2454ddb23c8
+
                
                
          if pygame.sprite.spritecollide(portal,bonzinho_group, True):
@@ -246,11 +269,11 @@ while rodando:
              bonzinho=movimento.bonequinho.bom_RIGHT(bonzinho)
              bonzinho.image = pygame.image.load("adventurer_walk1.png")
         
-        #  elif pressed_keys[K_a]:
-        #      malvado=movimento.bonequinho.bom_LEFT(malvado)
-        #  elif pressed_keys[K_d]:
-        #      malvado=movimento.bonequinho.bom_RIGHT(malvado)  
-        
+#          elif pressed_keys[K_a]:
+#              malvado=movimento.bonequinho.bom_LEFT(malvado)
+#          elif pressed_keys[K_d]:
+#              malvado=movimento.bonequinho.bom_RIGHT(malvado)  
+#        
          if bonzinho.rect.x > malvado.rect.x:
               malvado=movimento.bonequinho.bom_RIGHT_light(malvado)
               malvado.image = pygame.image.load("zombie_walk1.png")
@@ -268,10 +291,10 @@ while rodando:
              #coloca a tela na janela
           
          bonzinho.rect.y+=bonzinho.vel
-         bonzinho.vel+=2
+         bonzinho.vel+=2.5
      
          malvado.rect.y+=malvado.vel
-         malvado.vel+=2
+         malvado.vel+=2.5
           
 cont+=1  
 #menu.game_menu()
