@@ -201,8 +201,13 @@ while rodando:
              else:
                  cond=True
              
-         if pygame.sprite.spritecollide(malvado, Plataforma, False):
-             malvado.vel = 0 
+         lista5 = pygame.sprite.spritecollide(malvado, Plataforma, False)
+         if lista5:
+             if lista5[0].rect.top > malvado.rect.top:
+                 malvado.vel = 0
+                 malvado.rect.bottom=lista5[0].rect.top
+             if lista5[0].rect.bottom > malvado.rect.top:
+                 malvado.vel = 3
              
          lista4 = pygame.sprite.spritecollide(bonzinho, chao_group, False)
          if lista4:
@@ -217,7 +222,6 @@ while rodando:
                text=fonte.render("Game Over", True, white)
                tela.blit(text,(400,400))
                pygame.display.update() 
-               tempo.wait(100)
 
 #def collide(self, x, y, plataform):
 #       if pygame.sprite.collide_rect(self, plataform.rect):
@@ -281,8 +285,8 @@ while rodando:
               malvado=movimento.bonequinho.bom_LEFT_light(malvado)
               malvado.image = pygame.image.load("zombie_walk2.png") 
          if bonzinho.rect.y < malvado.rect.y:
-               malvado=movimento.bonequinho.bom_UP_light(malvado)
-               malvado.image = pygame.image.load("zombie_jump.png") 
+              malvado=movimento.bonequinho.bom_UP_light(malvado)
+              malvado.image = pygame.image.load("zombie_jump.png") 
               
         
               
