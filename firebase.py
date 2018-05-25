@@ -13,8 +13,15 @@ if firebase.get('Score', None) is None:
 else:
     score=firebase.get('Score', None)
     
-    
-    
-    
+if gameover == True:
+    if nome in score:
+        nome[minu]=minu
+        nome[seg]=seg
+    else:
+        nome={}
+        score=nome
+        nome[minu]=minu
+        nome[seg]=seg
+           
     
 firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)
