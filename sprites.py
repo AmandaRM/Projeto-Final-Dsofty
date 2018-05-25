@@ -4,6 +4,7 @@ from pygame.locals import *
 from random import randrange
 import plataform
 import movimento
+import username
 
 
 # ===============   INICIALIZAÇÃO   ===============
@@ -77,6 +78,7 @@ while rodando:
           tela2.blit(fundo, (0, 0))
           nome_jogo_group.draw(tela2)
           iniciar_jogo_group.draw(tela2)
+          nome_usuario.blit(tela2)
           
           for event in pygame.event.get():
           
@@ -233,7 +235,7 @@ while rodando:
              
          if pygame.sprite.spritecollide(malvado, bonzinho_group, True):
                fonte=pygame.font.SysFont(None,80) #25 é o tamanho da mensagem
-               text=fonte.render("Game Over", True, white)
+               text=fonte.render("Game Over", True, white) 
                tela.blit(text,(400,400))
                gameover=True
                pygame.display.update() 
