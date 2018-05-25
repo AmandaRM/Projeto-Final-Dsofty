@@ -292,7 +292,7 @@ while rodando:
 cont+=1  
 #menu.game_menu()
 pygame.display.quit()
-nome=Amanda #tirra isso quando o inserir nome estiver funcionando
+
 if firebase.get('Score', None) is None:
     score={}
 else:
@@ -303,8 +303,8 @@ if gameover == True:
         nome[minu]=minu
         nome[seg]=seg
     else:
-        score[nome]=
-        nome[minu]=minu
-        nome[seg]=seg
-           
+        score[nome]={}
+        score[nome]["minu"]=minu
+        score[nome]["seg"]=seg
+                  
 firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)
