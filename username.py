@@ -14,7 +14,7 @@ yellow = (255,255,0)
 
 ACCEPTED = string.ascii_letters+string.digits+string.punctuation+" "
 
-def inserir_nome(npme, screen, screen_size, events, maz_lenght=10,
+def inserir_nome(screen, screen_size, events, maz_lenght=10,
                  font_style='None', font_size=35, font_color=yellow):
     fonte=pygame.font.SysFont(font_style, font_size)
     

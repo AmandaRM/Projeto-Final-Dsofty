@@ -3,6 +3,7 @@ import sys
 from pygame.locals import *
 from random import randrange
 import plataform
+import username
 import movimento
 import username
 
@@ -78,7 +79,8 @@ while rodando:
           tela2.blit(fundo, (0, 0))
           nome_jogo_group.draw(tela2)
           iniciar_jogo_group.draw(tela2)
-          nome_usuario.blit(tela2)
+          nome_usuario = inserir_nome(tela2, (800,600), events, maz_lenght=10,
+                 font_style='None', font_size=35, font_color=yellow)
           
           for event in pygame.event.get():
           
