@@ -16,5 +16,5 @@ else:
     
     
     
-    
+
 firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)

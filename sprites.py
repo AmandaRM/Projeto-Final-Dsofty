@@ -45,6 +45,9 @@ def gameover():
     return tela.blit(text,(400,400))
     
 cont=0
+seg=0
+minu=0
+gameover=False
 # ===============   LOOPING PRINCIPAL   ===============
 
 rodando = True
@@ -53,11 +56,19 @@ inicio_jogo= True
 
 while rodando:
   tempo=relogio.tick(30)
+  cont+=1
+  if gameover == False:
+      if cont%30 == 0:
+          seg+=1
+          if seg == 59:
+              minu+=1
+              seg=0
+          
   if inicio_jogo:
           tela2 = pygame.display.set_mode((800, 600), 0, 32)
           pygame.display.set_caption('Star Lego')
           fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
-          iniciar_jogo = movimento.bonequinho("start_game.png", 100, 300)
+          iniciar_jogo = movimento.bonequinho("start_game.png", 195, 300)
           iniciar_jogo_group=pygame.sprite.Group()
           iniciar_jogo_group.add(iniciar_jogo)
           nome_jogo= movimento.bonequinho("starlego.png", 125, 180)
@@ -90,9 +101,13 @@ while rodando:
          
          fonte=pygame.font.SysFont(None,25, None)
          text=fonte.render( "TIME: ", True, white)
-        # text2=fonte.render(cont , True, white)
+         text2=fonte.render(str(seg) , True, white)
+         text3=fonte.render(str(minu), True, white)
+         text4=fonte.render(":", True, white)
          tela.blit(text, (700,20)) 
-        # tela.blit(text, (720,20)) 
+         tela.blit(text2, (780,20)) 
+         tela.blit(text3,(760, 20))
+         tela.blit(text4, (770, 20))
          
          pygame.display.update() 
     
@@ -188,20 +203,16 @@ while rodando:
          if lista2:
              if lista2[0].rect.top <= bonzinho.rect.bottom:
                  bonzinho.vel=-3
-                
-        
-                 
+
              if lista2[0].rect.bottom > bonzinho.rect.top:
                  bonzinho.vel = 3
            
-         cond=True
-         lista3 = pygame.sprite.spritecollide(bonzinho,Plataformas_Vermelhas, cond)
+       
+         lista3 = pygame.sprite.spritecollide(bonzinho,Plataformas_Vermelhas, False)
          if lista3:
              if lista3[0].rect.bottom > bonzinho.rect.top:
-                 cond=False
-                 bonzinho.vel=3
-             else:
-                 cond=True
+                bonzinho.vel=0
+           
              
          lista5 = pygame.sprite.spritecollide(malvado, Plataforma, False)
          if lista5:
@@ -224,44 +235,14 @@ while rodando:
                fonte=pygame.font.SysFont(None,80) #25 é o tamanho da mensagem
                text=fonte.render("Game Over", True, white)
                tela.blit(text,(400,400))
+               gameover=True
                pygame.display.update() 
 
-#def collide(self, x, y, plataform):
-#       if pygame.sprite.collide_rect(self, plataform.rect):
-#           if  xvel > 0:
-#               self.rect.right = plataform.rect.left
-#           if xvel< 0 :
-#               self.rect.left = plataform.rect.right
-#           if yvel > 0:
-#               self.rect.bottom=plataform.rect.top
-#               self.onGround=True 
-#               self.yvel=0
-#           if yvel<0:
-#               self.rect.top = plataform.rect.bottom
-#            
                
-y #       for e in Plataforma:
-#        if pygame.sprite.collide_rect(bonzinho, e.rect):
-#           if  bonzinho.rect.x  > 0:
-#               bonzinho.rect.right = e.rect.left
-#               bonzinho.vel=0
-#           if bonzinho.rect.x < 0 :
-#               bonzinho.rect.left = e.rect.right
-#               bonzinho.vel=0
-#           if bonzinho.rect.y > 0:
-#               bonzinho.rect.bottom= e.rect.top
-#               bonzinho.onGround=True 
-#               bonzinho.vel=0
-#           if bonzinho.rect.y < 0:
-#               bonzinho.rect.top = e.rect.bottom
-#               bonzinho.vel=0
-
-               
-               
-     if pygame.sprite.spritecollide(portal,bonzinho_group, True):
+         if pygame.sprite.spritecollide(portal,bonzinho_group, True):
              malvado.vel = 0
                      
-     if pygame.sprite.spritecollide(portal, malvado_group, True) or  pygame.sprite.spritecollide(portal, bonzinho_group, True):
+         if pygame.sprite.spritecollide(portal, malvado_group, True) or  pygame.sprite.spritecollide(portal, bonzinho_group, True):
              malvado.vel = 0
         
               #----------------------passar de fase---------------------
@@ -276,22 +257,22 @@ y #       for e in Plataforma:
              bonzinho=movimento.bonequinho.bom_RIGHT(bonzinho)
              bonzinho.image = pygame.image.load("adventurer_walk1.png")
         
-#          elif pressed_keys[K_a]:
-#              malvado=movimento.bonequinho.bom_LEFT(malvado)
-#          elif pressed_keys[K_d]:
-#              malvado=movimento.bonequinho.bom_RIGHT(malvado)  
-##        
-#         if bonzinho.rect.x > malvado.rect.x:
-#              malvado=movimento.bonequinho.bom_RIGHT_light(malvado)
-#              malvado.image = pygame.image.load("zombie_walk1.png")
-#         if bonzinho.rect.x < malvado.rect.x:
-#              malvado=movimento.bonequinho.bom_LEFT_light(malvado)
-#              malvado.image = pygame.image.load("zombie_walk2.png") 
-#         if bonzinho.rect.y < malvado.rect.y:
-#              malvado=movimento.bonequinho.bom_UP_light(malvado)
-#              malvado.image = pygame.image.load("zombie_jump.png") 
-#              
+         elif pressed_keys[K_a]:
+              malvado=movimento.bonequinho.bom_LEFT(malvado)
+         elif pressed_keys[K_d]:
+              malvado=movimento.bonequinho.bom_RIGHT(malvado)  
 #        
+         if bonzinho.rect.x > malvado.rect.x:
+              malvado=movimento.bonequinho.bom_RIGHT_light(malvado)
+              malvado.image = pygame.image.load("zombie_walk1.png")
+         if bonzinho.rect.x < malvado.rect.x:
+              malvado=movimento.bonequinho.bom_LEFT_light(malvado)
+              malvado.image = pygame.image.load("zombie_walk2.png") 
+         if bonzinho.rect.y < malvado.rect.y:
+              malvado=movimento.bonequinho.bom_UP_light(malvado)
+              malvado.image = pygame.image.load("zombie_jump.png") 
+              
+        
               
               
           #gera saídas
