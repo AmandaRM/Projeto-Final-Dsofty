@@ -237,7 +237,7 @@ while rodando:
 #               self.rect.top = plataform.rect.bottom
 #            
                
-#       for e in Plataforma:
+y #       for e in Plataforma:
 #        if pygame.sprite.collide_rect(bonzinho, e.rect):
 #           if  bonzinho.rect.x  > 0:
 #               bonzinho.rect.right = e.rect.left
@@ -255,10 +255,10 @@ while rodando:
 
                
                
-         if pygame.sprite.spritecollide(portal,bonzinho_group, True):
+     if pygame.sprite.spritecollide(portal,bonzinho_group, True):
              malvado.vel = 0
                      
-         if pygame.sprite.spritecollide(portal, malvado_group, True) or  pygame.sprite.spritecollide(portal, bonzinho_group, True):
+     if pygame.sprite.spritecollide(portal, malvado_group, True) or  pygame.sprite.spritecollide(portal, bonzinho_group, True):
              malvado.vel = 0
         
               #----------------------passar de fase---------------------
