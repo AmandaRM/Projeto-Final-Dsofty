@@ -1,34 +1,33 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue May 15 16:44:50 2018
+Created on Fri May 25 08:13:51 2018
 
-@author: gi_gi
+@author: manucastilla
 """
 
-from firebase import firebase 
-firebase=firebase.firebase.Application('https://projetofinal-d0c28.firebaseio.com/', None)
+import pygame
+import string
+from pygame.locals import *
 
-if firebase.get('Score', None) is None:
-    score={}
-else:
-    score=firebase.get('Score', None)
-    
-<<<<<<< HEAD
-if gameover == True:
-    if nome in score:
-        nome[minu]=minu
-        nome[seg]=seg
-    else:
-        nome={}
-        score=nome
-        nome[minu]=minu
-        nome[seg]=seg
-           
-    
-=======
-    
-    
-    
+yellow = (255,255,0)
 
->>>>>>> a117ccdac650c211cc2cbabe4255cd797cabaac2
-firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)
+ACCEPTED = string.ascii_letters+string.digits+string.punctuation+" "
+
+def inserir_nome():
+    nome=[]
+     #pegar o nome do usuário
+    for event in pygame.event.get():
+         if event.type == pygame.KEYDOWN:
+             if event.key == pygame.K_RETURN:
+                 return nome
+             elif event.key == pygame.K_BACKSPACE:
+                 nome = nome[:-1]
+             elif event.unicode in ACCEPTED:
+                 if len(nome) < 11:
+                     nome += event.unicode
+    return nome
+     
+    
+pygame.init()
+tecla_pressionada = pygame.key.get_pressed()

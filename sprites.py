@@ -80,8 +80,11 @@ while rodando:
           tela2.blit(fundo, (0, 0))
           nome_jogo_group.draw(tela2)
           iniciar_jogo_group.draw(tela2)
-#          nome_usuario = inserir_nome(tela2, (800,600), events, maz_lenght=10,
-#                 font_style='None', font_size=35, font_color=yellow)
+          nome= username.inserir_nome()
+          fonte_style=pygame.font.SysFont(None,35)
+          textnome = fonte_style.render("nome", True, yellow)
+          tela2.blit(textnome, (200 , 100))
+                 
           
           for event in pygame.event.get():
           
