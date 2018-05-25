@@ -6,7 +6,8 @@ import plataform
 import username
 import movimento
 import username
-
+from firebase import firebase 
+firebase=firebase.FirebaseApplication('https://projetofinal-d0c28.firebaseio.com/', None)
 
 # ===============   INICIALIZAÇÃO   ===============
 pygame.init()
@@ -79,8 +80,8 @@ while rodando:
           tela2.blit(fundo, (0, 0))
           nome_jogo_group.draw(tela2)
           iniciar_jogo_group.draw(tela2)
-          nome_usuario = inserir_nome(tela2, (800,600), events, maz_lenght=10,
-                 font_style='None', font_size=35, font_color=yellow)
+#          nome_usuario = inserir_nome(tela2, (800,600), events, maz_lenght=10,
+#                 font_style='None', font_size=35, font_color=yellow)
           
           for event in pygame.event.get():
           
@@ -291,3 +292,19 @@ while rodando:
 cont+=1  
 #menu.game_menu()
 pygame.display.quit()
+nome=Amanda #tirra isso quando o inserir nome estiver funcionando
+if firebase.get('Score', None) is None:
+    score={}
+else:
+    score=firebase.get('Score', None)
+    
+if gameover == True:
+    if nome in score:
+        nome[minu]=minu
+        nome[seg]=seg
+    else:
+        score[nome]=
+        nome[minu]=minu
+        nome[seg]=seg
+           
+firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)
