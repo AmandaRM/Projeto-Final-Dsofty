@@ -73,7 +73,7 @@ while rodando:
                  rodando = False 
              
               tecla_pressionada = pygame.key.get_pressed()
-              if tecla_pressionada[K_s]:
+              if tecla_pressionada[K_KP_ENTER ]:
                   inicio_jogo=False
           pygame.display.update()      
       
