@@ -57,7 +57,7 @@ while rodando:
           tela2 = pygame.display.set_mode((800, 600), 0, 32)
           pygame.display.set_caption('Star Lego')
           fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
-          iniciar_jogo = movimento.bonequinho("startgame.png", 125, 300)
+          iniciar_jogo = movimento.bonequinho("start_game.png", 100, 300)
           iniciar_jogo_group=pygame.sprite.Group()
           iniciar_jogo_group.add(iniciar_jogo)
           nome_jogo= movimento.bonequinho("starlego.png", 125, 180)
@@ -65,7 +65,7 @@ while rodando:
           nome_jogo_group.add(nome_jogo)
           tela2.blit(fundo, (0, 0))
           nome_jogo_group.draw(tela2)
-         # iniciar_jogo_group.draw(tela2)
+          iniciar_jogo_group.draw(tela2)
           
           for event in pygame.event.get():
           
@@ -73,7 +73,7 @@ while rodando:
                  rodando = False 
              
               tecla_pressionada = pygame.key.get_pressed()
-              if tecla_pressionada[K_KP_ENTER ]:
+              if tecla_pressionada[K_RETURN]:
                   inicio_jogo=False
           pygame.display.update()      
       
@@ -186,8 +186,10 @@ while rodando:
              
          lista2 = pygame.sprite.spritecollide(bonzinho, Plataformas_Amarelas, False)
          if lista2:
-             if lista2[0].rect.top > bonzinho.rect.top:
+             if lista2[0].rect.top <= bonzinho.rect.bottom:
                  bonzinho.vel=-3
+                
+        
                  
              if lista2[0].rect.bottom > bonzinho.rect.top:
                  bonzinho.vel = 3
@@ -212,6 +214,7 @@ while rodando:
          lista4 = pygame.sprite.spritecollide(bonzinho, chao_group, False)
          if lista4:
              if lista4[0].rect.top > bonzinho.rect.top:
+                 bonzinho.rect.bottom=lista4[0].rect.top+1
                  bonzinho.vel = 0
              
          if pygame.sprite.spritecollide(malvado, chao_group, False):
@@ -277,18 +280,18 @@ while rodando:
 #              malvado=movimento.bonequinho.bom_LEFT(malvado)
 #          elif pressed_keys[K_d]:
 #              malvado=movimento.bonequinho.bom_RIGHT(malvado)  
+##        
+#         if bonzinho.rect.x > malvado.rect.x:
+#              malvado=movimento.bonequinho.bom_RIGHT_light(malvado)
+#              malvado.image = pygame.image.load("zombie_walk1.png")
+#         if bonzinho.rect.x < malvado.rect.x:
+#              malvado=movimento.bonequinho.bom_LEFT_light(malvado)
+#              malvado.image = pygame.image.load("zombie_walk2.png") 
+#         if bonzinho.rect.y < malvado.rect.y:
+#              malvado=movimento.bonequinho.bom_UP_light(malvado)
+#              malvado.image = pygame.image.load("zombie_jump.png") 
+#              
 #        
-         if bonzinho.rect.x > malvado.rect.x:
-              malvado=movimento.bonequinho.bom_RIGHT_light(malvado)
-              malvado.image = pygame.image.load("zombie_walk1.png")
-         if bonzinho.rect.x < malvado.rect.x:
-              malvado=movimento.bonequinho.bom_LEFT_light(malvado)
-              malvado.image = pygame.image.load("zombie_walk2.png") 
-         if bonzinho.rect.y < malvado.rect.y:
-              malvado=movimento.bonequinho.bom_UP_light(malvado)
-              malvado.image = pygame.image.load("zombie_jump.png") 
-              
-        
               
               
           #gera saídas
