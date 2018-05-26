@@ -83,7 +83,7 @@ while rodando:
           nome= username.inserir_nome()
           fonte_style=pygame.font.SysFont(None,35)
           textnome = fonte_style.render("nome", True, yellow)
-          tela2.blit(textnome, (200 , 100))
+          tela2.blit(textnome, (200 , 700))
                  
           
           for event in pygame.event.get():
