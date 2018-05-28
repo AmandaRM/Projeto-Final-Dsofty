@@ -9,49 +9,60 @@ import username
 from firebase import firebase 
 firebase=firebase.FirebaseApplication('https://projetofinal-d0c28.firebaseio.com/', None)
 
+# ===============    MÚSICA   ===============
+pygame.mixer.music.load("Star_lego.mp3")
+
+
 # ===============   INICIALIZAÇÃO   ===============
 pygame.init()
 tela = pygame.display.set_mode((800, 600), 0, 32)
-pygame.display.set_caption('LEGO Galaxy')
 
+# colocando o título do jogo
+pygame.display.set_caption('LEGO Galaxy')
 
 #fazendo o chão do jogo
 fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
-#fazer virar grupo
 
-# cria o bonzinho 
+# cria o bonzinho e criação de grupo
 bonzinho = movimento.bonequinho("adventurer_stand.png",700 ,520)
 bonzinho_group = pygame.sprite.Group()
 bonzinho_group.add(bonzinho)
-#cria o malvado
+#cria o malvado e criação de grupo
 malvado= movimento.bonequinho("zombie_stand.png", 200, 1)
 malvado_group=pygame.sprite.Group()
 malvado_group.add(malvado)
-#cria o portal=objetivo
+
+#cria o portal e criação do grupo
 portal=movimento.bonequinho("portal.png", 4, 0)
 portal_group = pygame.sprite.Group()
 portal_group.add(portal)
 portal_image=pygame.image.load("portal.png").convert()
 
+#cria o chão e criação do grupo
 chao=movimento.bonequinho("chão.png", 0, 570)
 chao_group= pygame.sprite.Group()
 chao_group.add(chao)
 
+#criação da plataformas
 Plataforma, Plataformas_Amarelas, Plataformas_Vermelhas, Plataformas_Verdes =plataform.cria_Plataform_nAleatoria()
 
+#fazer download das cores
 black=(0,0,0)
 white = (255, 255, 255)
 yellow = (255,255,0)
 
+#função que mostra o game over do jogo
 def gameover():
     fonte=pygame.font.SysFont(None,25) #25 é o tamanho da mensagem
     text=fonte.render("Fim de jogo", True, white)
     return tela.blit(text,(400,400))
-    
+ 
+# formação do timer do jogo
 cont=0
 seg=0
 minu=0
 gameover=False
+
 # ===============   LOOPING PRINCIPAL   ===============
 
 rodando = True
@@ -61,13 +72,15 @@ inicio_jogo= True
 while rodando:
   tempo=relogio.tick(30)
   cont+=1
+  
+  #fazer o relógio funcionar
   if gameover == False:
       if cont%30 == 0:
           seg+=1
           if seg == 59:
               minu+=1
               seg=0
-          
+  ############## MENU ##############        
   if inicio_jogo:
           tela2 = pygame.display.set_mode((800, 600), 0, 32)
           pygame.display.set_caption('Star Lego')
@@ -104,8 +117,11 @@ while rodando:
               if tecla_pressionada[K_RETURN]:
                   inicio_jogo=False
           pygame.display.update()      
+  
+  ############## JOGO ##############    
+  if inicio_jogo==False:  
       
-  if inicio_jogo==False:   
+      #desenhando o jogo na tela
          tela.blit(fundo, (0, -85))
          chao_group.draw(tela)
          bonzinho_group.draw(tela)
@@ -115,6 +131,7 @@ while rodando:
          Plataformas_Amarelas.draw(tela)
          Plataformas_Vermelhas.draw(tela)
          Plataformas_Verdes.draw(tela)
+         pygame.mixer.music.play(-1)
          
          fonte=pygame.font.SysFont(None,25, None)
          text=fonte.render( "TIME: ", True, white)
@@ -134,7 +151,7 @@ while rodando:
          portal_group.add(portal)
     
            
-    
+    # mexer nas teclas
          for event in pygame.event.get():     #pega lista de eventos 0)
              if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
                 rodando = False            #executa a função de sistema "exit"
