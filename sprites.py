@@ -49,6 +49,7 @@ Plataforma, Plataformas_Amarelas, Plataformas_Vermelhas, Plataformas_Verdes =pla
 #fazer download das cores
 black=(0,0,0)
 white = (255, 255, 255)
+yellow = (255,255,0)
 
 #função que mostra o game over do jogo
 def gameover():
@@ -93,10 +94,18 @@ while rodando:
           tela2.blit(fundo, (0, 0))
           nome_jogo_group.draw(tela2)
           iniciar_jogo_group.draw(tela2)
-          nome= username.inserir_nome()
-          fonte_style=pygame.font.SysFont(None,35)
-          textnome = fonte_style.render("nome", True, yellow)
-          tela2.blit(textnome, (200 , 700))
+#          nome=""
+#          if len(nome) < 12:
+#              retorno= username.inserir_nome()
+#              print(retorno)
+#              nome.append(retorno)
+#              fonte_style=pygame.font.SysFont(None,35)
+#              textnome = fonte_style.render(str(nome), True, yellow)
+#              tela2.blit(textnome, (350,450))
+#          if len(nome) == 1:
+#              fonte_style=pygame.font.SysFont(None,35)
+#              textnome = fonte_style.render("insira seu nome", True, yellow)
+#              tela2.blit(textnome, (350,450))
                  
           
           for event in pygame.event.get():
@@ -313,18 +322,18 @@ cont+=1
 #menu.game_menu()
 pygame.display.quit()
 
-if firebase.get('Score', None) is None:
-    score={}
-else:
-    score=firebase.get('Score', None)
-    
-if gameover == True:
-    if nome in score:
-        nome[minu]=minu
-        nome[seg]=seg
-    else:
-        score[nome]={}
-        score[nome]["minu"]=minu
-        score[nome]["seg"]=seg
-                  
-firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)
+#if firebase.get('Score', None) is None:
+#    score={}
+#else:
+#    score=firebase.get('Score', None)
+#    
+#if gameover == True:
+#    if nome in score:
+#        nome[minu]=minu
+#        nome[seg]=seg
+#    else:
+#        score[nome]={}
+#        score[nome]["minu"]=minu
+#        score[nome]["seg"]=seg
+#                  
+#firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)
