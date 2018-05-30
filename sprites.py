@@ -44,7 +44,7 @@ chao=movimento.bonequinho("chão.png", 0, 570)
 chao_group= pygame.sprite.Group()
 chao_group.add(chao)
 
-#criação da plataformas
+#criação da plataformas\
 Plataforma, Plataformas_Amarelas, Plataformas_Vermelhas, Plataformas_Verdes =plataform.cria_Plataform_nAleatoria()
 
 #fazer download das cores
@@ -63,6 +63,7 @@ cont=0
 seg=0
 minu=0
 gameover=False
+jogo=False
 
 # ===============   LOOPING PRINCIPAL   ===============
 
@@ -82,7 +83,7 @@ while rodando:
               minu+=1
               seg=0
   ############## MENU ##############        
-  if inicio_jogo:
+  if inicio_jogo==True and jogo==False:
           tela2 = pygame.display.set_mode((800, 600), 0, 32)
           pygame.display.set_caption('Star Lego')
           fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
@@ -108,7 +109,6 @@ while rodando:
 #              textnome = fonte_style.render("insira seu nome", True, yellow)
 #              tela2.blit(textnome, (350,450))
                  
-          
           for event in pygame.event.get():
           
               if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
@@ -117,19 +117,20 @@ while rodando:
               tecla_pressionada = pygame.key.get_pressed()
               if tecla_pressionada[K_RETURN]:
                   inicio_jogo=False
+                  jogo=True
           pygame.display.update()    
           
-############## GAME OVER MENU ##################3
-          if gameover==True:
+############## GAME OVER MENU ##################
+          if gameover==True and inicio_jogo==False and jogo==False:
                    tela3 = pygame.display.set_mode((800, 600), 0, 32)
                    pygame.display.set_caption('Star Lego')
                    fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
-                   restart_jogo = movimento.bonequinho("start_game.png", 195, 300)
+                   restart_jogo = movimento.bonequinho("aperte_jogar.png", 195, 300) #mudar os nomes
                    restart_jogo_group=pygame.sprite.Group()
                    restart_jogo_group.add(restart_jogo)
                    tela2.blit(fundo, (0, 0))
                    nome_jogo_group.draw(tela3)
-                   iniciar_jogo_group.draw(tela3)
+                   restart_jogo_group.draw(tela3)
                    
                    def restart_program():
                         """Restarts the current program.
@@ -149,7 +150,7 @@ while rodando:
                       pygame.display.update()      
   
   ############## JOGO ##############    
-  if inicio_jogo==False:  
+  if inicio_jogo==False and jogo==True:
 
       #desenhando o jogo na tela
          tela.blit(fundo, (0, -85))
@@ -259,7 +260,7 @@ while rodando:
                text=fonte.render("Game Over", True, white) 
                tela.blit(text,(400,400))
                gameover=True
-               inicio_jogo=True
+               jogo=False
                pygame.display.update() 
 
                
