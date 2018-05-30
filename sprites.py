@@ -120,34 +120,7 @@ while rodando:
                   jogo=True
           pygame.display.update()    
           
-############## GAME OVER MENU ##################
-          if gameover==True and inicio_jogo==False and jogo==False:
-                   tela3 = pygame.display.set_mode((800, 600), 0, 32)
-                   pygame.display.set_caption('Star Lego')
-                   fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
-                   restart_jogo = movimento.bonequinho("aperte_jogar.png", 195, 300) #mudar os nomes
-                   restart_jogo_group=pygame.sprite.Group()
-                   restart_jogo_group.add(restart_jogo)
-                   tela2.blit(fundo, (0, 0))
-                   nome_jogo_group.draw(tela3)
-                   restart_jogo_group.draw(tela3)
-                   
-                   def restart_program():
-                        """Restarts the current program.
-                        Note: this function does not return. Any cleanup action (like
-                        saving data) must be done before calling this function."""
-                        python = sys.executable
-                        os.execl(python, python, * sys.argv)
-                  
-                   for event in pygame.event.get():
-                      if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
-                         rodando = False 
-                      tecla_pressionada = pygame.key.get_pressed()
-                      if tecla_pressionada[K_RETURN]:
-                          restart_program()
-                          inicio_jogo=False 
-        
-                      pygame.display.update()      
+
   
   ############## JOGO ##############    
   if inicio_jogo==False and jogo==True:
@@ -261,6 +234,35 @@ while rodando:
                tela.blit(text,(400,400))
                gameover=True
                jogo=False
+               ############## GAME OVER MENU ##################
+               if gameover==True and inicio_jogo==False and jogo==False:
+                       tela3 = pygame.display.set_mode((800, 600), 0, 32)
+                       pygame.display.set_caption('Star Lego')
+                       fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
+                       restart_jogo = movimento.bonequinho("aperte_jogar.png", 195, 300) #mudar os nomes
+                       restart_jogo_group=pygame.sprite.Group()
+                       restart_jogo_group.add(restart_jogo)
+                       tela2.blit(fundo, (0, 0))
+                       nome_jogo_group.draw(tela3)
+                       restart_jogo_group.draw(tela3)
+                       
+                       def restart_program():
+                            """Restarts the current program.
+                            Note: this function does not return. Any cleanup action (like
+                            saving data) must be done before calling this function."""
+                            python = sys.executable
+                            os.execl(python, python, * sys.argv)
+                      
+                       for event in pygame.event.get():
+                          if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
+                             rodando = False 
+                          tecla_pressionada = pygame.key.get_pressed()
+                          if tecla_pressionada[K_RETURN]:
+                              restart_program()
+                              jogo=True
+                              gameover=False
+            
+                          pygame.display.update()      
                pygame.display.update() 
 
                
