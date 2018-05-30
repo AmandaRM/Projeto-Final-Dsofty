@@ -242,10 +242,10 @@ while rodando:
                        restart_jogo = movimento.bonequinho("aperte_jogar.png", 195, 300) #mudar os nomes
                        restart_jogo_group=pygame.sprite.Group()
                        restart_jogo_group.add(restart_jogo)
-                       tela2.blit(fundo, (0, 0))
+                       tela3.blit(fundo, (0, 0))
                        nome_jogo_group.draw(tela3)
                        restart_jogo_group.draw(tela3)
-                       
+                        
                        def restart_program():
                             """Restarts the current program.
                             Note: this function does not return. Any cleanup action (like
@@ -259,13 +259,11 @@ while rodando:
                           tecla_pressionada = pygame.key.get_pressed()
                           if tecla_pressionada[K_RETURN]:
                               restart_program()
-                              jogo=True
-                              gameover=False
+#                              jogo=True
+#                              gameover=False
             
-                          pygame.display.update()      
-               pygame.display.update() 
-
-               
+               pygame.display.update()      
+             
          if pygame.sprite.spritecollide(portal,bonzinho_group, True):
              malvado.vel = 0
                      
