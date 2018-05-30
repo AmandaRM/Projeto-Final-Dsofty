@@ -11,7 +11,8 @@ import os
 firebase=firebase.FirebaseApplication('https://projetofinal-d0c28.firebaseio.com/', None)
 
 # ===============    MÚSICA   ===============
-#pygame.mixer.music.load("Star_lego.mp3")
+pygame.init()
+pygame.mixer.music.load("Star_lego.wav")
 
 
 # ===============   INICIALIZAÇÃO   ===============
