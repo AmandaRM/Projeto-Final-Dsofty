@@ -10,7 +10,7 @@ from firebase import firebase
 firebase=firebase.FirebaseApplication('https://projetofinal-d0c28.firebaseio.com/', None)
 
 # ===============    MÚSICA   ===============
-pygame.mixer.music.load("Star_lego.mp3")
+#pygame.mixer.music.load("Star_lego.mp3")
 
 
 # ===============   INICIALIZAÇÃO   ===============
@@ -131,7 +131,7 @@ while rodando:
          Plataformas_Amarelas.draw(tela)
          Plataformas_Vermelhas.draw(tela)
          Plataformas_Verdes.draw(tela)
-         pygame.mixer.music.play(-1)
+#         pygame.mixer.music.play(-1)
          
          fonte=pygame.font.SysFont(None,25, None)
          text=fonte.render( "TIME: ", True, white)
