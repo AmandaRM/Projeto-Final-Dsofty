@@ -7,6 +7,7 @@ import username
 import movimento
 import username
 from firebase import firebase 
+import os
 firebase=firebase.FirebaseApplication('https://projetofinal-d0c28.firebaseio.com/', None)
 
 # ===============    MÚSICA   ===============
@@ -116,11 +117,40 @@ while rodando:
               tecla_pressionada = pygame.key.get_pressed()
               if tecla_pressionada[K_RETURN]:
                   inicio_jogo=False
-          pygame.display.update()      
+          pygame.display.update()    
+          
+############## GAME OVER MENU ##################3
+          if gameover==True:
+                   tela3 = pygame.display.set_mode((800, 600), 0, 32)
+                   pygame.display.set_caption('Star Lego')
+                   fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
+                   restart_jogo = movimento.bonequinho("start_game.png", 195, 300)
+                   restart_jogo_group=pygame.sprite.Group()
+                   restart_jogo_group.add(restart_jogo)
+                   tela2.blit(fundo, (0, 0))
+                   nome_jogo_group.draw(tela3)
+                   iniciar_jogo_group.draw(tela3)
+                   
+                   def restart_program():
+                        """Restarts the current program.
+                        Note: this function does not return. Any cleanup action (like
+                        saving data) must be done before calling this function."""
+                        python = sys.executable
+                        os.execl(python, python, * sys.argv)
+                  
+                   for event in pygame.event.get():
+                      if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
+                         rodando = False 
+                      tecla_pressionada = pygame.key.get_pressed()
+                      if tecla_pressionada[K_RETURN]:
+                          restart_program()
+                          inicio_jogo=False 
+        
+                      pygame.display.update()      
   
   ############## JOGO ##############    
   if inicio_jogo==False:  
-      
+
       #desenhando o jogo na tela
          tela.blit(fundo, (0, -85))
          chao_group.draw(tela)
@@ -172,47 +202,6 @@ while rodando:
                     
         
          #===========================COLLIDE=========================================#           
-##                    
-#          def collide(self, x, y, plataform):
-#               if pygame.sprite.collide_rect(self, plataform.rect):
-#                   if  xvel > 0:
-#                       self.rect.right = plataform.rect.left
-#                   if xvel< 0 :
-#                       self.rect.left = plataform.rect.right
-#                   if yvel > 0:
-#                       self.rect.bottom=plataform.rect.top
-#                       self.onGround=True 
-#                       self.yvel=0
-#                   if yvel<0:
-#                       self.rect.top = plataform.rect.bottom
-                       
-                       
-#               for e in :
-#                if pygame.sprite.collide_rect(bonzinho, e.rect):
-#                   if  bonzinho.rect.x  > 0:
-#                       bonzinho.rect.right = e.rect.left
-#                       bonzinho.vel=0
-#                   if bonzinho.rect.x < 0 :
-#                       bonzinho.rect.left = e.rect.right
-#                       bonzinho.vel=0
-#                   if bonzinho.rect.y > 0:
-#                       bonzinho.rect.bottom= e.rect.top
-#                       bonzinho.onGround=True 
-#                       bonzinho.vel=0
-#                   if bonzinho.rect.y < 0:
-#                       bonzinho.rect.top = e.rect.bottom
-#                       bonzinho.vel=0
-                       
-                       
-               
-            
-#          if pygame.sprite.spritecollide(Plataf, portal_group, True):
-#              continue
-
-#          if pygame.sprite.spritecollide(Plataf, portal_group, True):
-#              continue
-                    
-    
          for e in Plataformas_Vermelhas:
              e=plataform.move_plataforma(e, 400, 200)
     
@@ -270,6 +259,7 @@ while rodando:
                text=fonte.render("Game Over", True, white) 
                tela.blit(text,(400,400))
                gameover=True
+               inicio_jogo=True
                pygame.display.update() 
 
                
@@ -281,8 +271,6 @@ while rodando:
         
               #----------------------passar de fase---------------------
               
-        #  if pygame.sprite.spritecollide(malvado, bonzinho, True):
-        #      gameover()
          pressed_keys=pygame.key.get_pressed()     
          if pressed_keys[K_LEFT]:
              bonzinho=movimento.bonequinho.bom_LEFT(bonzinho)
@@ -305,19 +293,14 @@ while rodando:
          if bonzinho.rect.y < malvado.rect.y:
               malvado=movimento.bonequinho.bom_UP_light(malvado)
               malvado.image = pygame.image.load("zombie_jump.png") 
-              
-        
-              
-              
-          #gera saídas
-             #coloca a tela na janela
-          
+
+#######ADICIONA VELOCIDADE AOS BONEQUINHOS -- COMO UMA GRAVIDADE##########
          bonzinho.rect.y+=bonzinho.vel
          bonzinho.vel+=2.5
      
          malvado.rect.y+=malvado.vel
          malvado.vel+=2.5
-          
+        
 cont+=1  
 #menu.game_menu()
 pygame.display.quit()
