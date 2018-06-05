@@ -5,14 +5,14 @@ from random import randrange
 import plataform
 import username
 import movimento
-import username
+import string
 from firebase import firebase 
 import os
 firebase=firebase.FirebaseApplication('https://projetofinal-d0c28.firebaseio.com/', None)
 
 # ===============    MÚSICA   ===============
 pygame.init()
-pygame.mixer.music.load("Star_lego.wav")
+musica = pygame.mixer.Sound("Star_lego.wav")
 
 
 # ===============   INICIALIZAÇÃO   ===============
@@ -20,7 +20,7 @@ pygame.init()
 tela = pygame.display.set_mode((800, 600), 0, 32)
 
 # colocando o título do jogo
-pygame.display.set_caption('LEGO Galaxy')
+pygame.display.set_caption('Star Lego')
 
 #fazendo o chão do jogo
 fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
@@ -65,7 +65,8 @@ seg=0
 minu=0
 gameover=False
 jogo=False
-
+jogador=False
+ACCEPTED = string.ascii_letters+string.digits+string.punctuation+" "
 # ===============   LOOPING PRINCIPAL   ===============
 
 rodando = True
@@ -84,7 +85,12 @@ while rodando:
               minu+=1
               seg=0
   ############## MENU ##############        
+  gambiarra = 0
   if inicio_jogo==True and jogo==False:
+          gambiarra += 1
+          if gambiarra ==1:
+              pygame.mixer.Sound.set_volume(musica, 0.3)
+              pygame.mixer.Sound.play(musica)
           tela2 = pygame.display.set_mode((800, 600), 0, 32)
           pygame.display.set_caption('Star Lego')
           fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
@@ -97,18 +103,6 @@ while rodando:
           tela2.blit(fundo, (0, 0))
           nome_jogo_group.draw(tela2)
           iniciar_jogo_group.draw(tela2)
-#          nome=""
-#          if len(nome) < 12:
-#              retorno= username.inserir_nome()
-#              print(retorno)
-#              nome.append(retorno)
-#              fonte_style=pygame.font.SysFont(None,35)
-#              textnome = fonte_style.render(str(nome), True, yellow)
-#              tela2.blit(textnome, (350,450))
-#          if len(nome) == 1:
-#              fonte_style=pygame.font.SysFont(None,35)
-#              textnome = fonte_style.render("insira seu nome", True, yellow)
-#              tela2.blit(textnome, (350,450))
                  
           for event in pygame.event.get():
           
@@ -118,13 +112,38 @@ while rodando:
               tecla_pressionada = pygame.key.get_pressed()
               if tecla_pressionada[K_RETURN]:
                   inicio_jogo=False
-                  jogo=True
+                  jogador=True
           pygame.display.update()    
           
-
+  if inicio_jogo==False and jogador==True:
+      tela3=pygame.display.set_mode((800,600),0,32)
+      pygame.display.set_caption('Star Lego')
+      fundo1 = pygame.image.load("Fundo-Estrelas.jpg").convert()
+      nome_do_jogador=movimento.bonequinho("nome_jogador.png", 110,200)
+      nome_do_jogador_group=pygame.sprite.Group()
+      nome_do_jogador_group.add(nome_do_jogador)
+      tecla_pressionada = pygame.key.get_pressed()
+      tela3.blit(fundo1, (0, 0))
+      nome_do_jogador_group.draw(tela3)
+      fonte=pygame.font.SysFont(None,25, None)
+          
+      if tecla_pressionada:
+          for event in pygame.event.get():
+              if event.type == pygame.KEYDOWN:
+                  nomej=pygame.key.get_pressed()
+                  nomej=fonte.render(name,True,(252, 252, 252))
+                  if event.key == pygame.K_RETURN:
+                    tela3.blit(nomej, (0,0))
+                    jogo=True
+                  elif event.key == pygame.K_BACKSPACE:
+                    tela3.blit(nomej[:-1],(0,0))
+      pygame.display.update()            
+          
+      
+      
   
   ############## JOGO ##############    
-  if inicio_jogo==False and jogo==True:
+  if jogador==False and jogo==True:
 
       #desenhando o jogo na tela
          tela.blit(fundo, (0, -85))
@@ -225,9 +244,11 @@ while rodando:
              if lista4[0].rect.top > bonzinho.rect.top:
                  bonzinho.rect.bottom=lista4[0].rect.top+1
                  bonzinho.vel = 0
-             
-         if pygame.sprite.spritecollide(malvado, chao_group, False):
-             malvado.vel = 0
+         lista6 = pygame.sprite.spritecollide(malvado, chao_group, False)    
+         if lista6:
+             if lista6[0].rect.top>malvado.rect.top:
+                 malvado.rect.bottom=lista6[0].rect.top+1
+                 malvado.vel = 0
              
          if pygame.sprite.spritecollide(malvado, bonzinho_group, True):
                fonte=pygame.font.SysFont(None,80) #25 é o tamanho da mensagem
@@ -293,8 +314,9 @@ while rodando:
               malvado=movimento.bonequinho.bom_LEFT_light(malvado)
               malvado.image = pygame.image.load("zombie_walk2.png") 
          if bonzinho.rect.y < malvado.rect.y:
-              malvado=movimento.bonequinho.bom_UP_light(malvado)
-              malvado.image = pygame.image.load("zombie_jump.png") 
+             if pygame.sprite.spritecollide(malvado, chao_group, False) or pygame.sprite.spritecollide(malvado, Plataforma, False):
+                 malvado=movimento.bonequinho.bom_UP_light(malvado)
+                 malvado.image = pygame.image.load("zombie_jump.png") 
 
 #######ADICIONA VELOCIDADE AOS BONEQUINHOS -- COMO UMA GRAVIDADE##########
          bonzinho.rect.y+=bonzinho.vel
@@ -307,18 +329,18 @@ cont+=1
 #menu.game_menu()
 pygame.display.quit()
 
-#if firebase.get('Score', None) is None:
-#    score={}
-#else:
-#    score=firebase.get('Score', None)
-#    
-#if gameover == True:
-#    if nome in score:
-#        nome[minu]=minu
-#        nome[seg]=seg
-#    else:
-#        score[nome]={}
-#        score[nome]["minu"]=minu
-#        score[nome]["seg"]=seg
-#                  
-#firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)
+if firebase.get('Score', None) is None:
+    score={}
+else:
+    score=firebase.get('Score', None)
+    
+if gameover == True:
+    if name in score:
+        name[minu]=minu
+        name[seg]=seg
+    else:
+        score[name]={}
+        score[name]["minu"]=minu
+        score[name]["seg"]=seg
+                  
+firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)
