@@ -97,18 +97,18 @@ while rodando:
           tela2.blit(fundo, (0, 0))
           nome_jogo_group.draw(tela2)
           iniciar_jogo_group.draw(tela2)
-#          nome=""
-#          if len(nome) < 12:
-#              retorno= username.inserir_nome()
-#              print(retorno)
+          nome=""
+          if len(nome) < 12:
+              retorno= username.inserir_nome()
 #              nome.append(retorno)
-#              fonte_style=pygame.font.SysFont(None,35)
-#              textnome = fonte_style.render(str(nome), True, yellow)
-#              tela2.blit(textnome, (350,450))
-#          if len(nome) == 1:
-#              fonte_style=pygame.font.SysFont(None,35)
-#              textnome = fonte_style.render("insira seu nome", True, yellow)
-#              tela2.blit(textnome, (350,450))
+              fonte_style=pygame.font.SysFont(None,35)
+              textnome = fonte_style.render(str(nome), True, yellow)
+              tela2.blit(textnome, (350,450))
+          if len(nome) == 1:
+              fonte_style=pygame.font.SysFont(None,35)
+              textnome = fonte_style.render("insira seu nome", True, yellow)
+              tela2.blit(textnome, (350,450))
+            
                  
           for event in pygame.event.get():
           
