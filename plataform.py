@@ -142,7 +142,7 @@ def cria_Plataform_nAleatoria():
      plataformas_group.add(plataforma4)
      plataforma5=Plataform("plataform_de_pedra_reta_pequena.png", [450, 400])        
      plataformas_group.add(plataforma5)
-     plataforma6=Plataform("plataform_de_pedra_reta_pequena.png", [650, 400])        
+     plataforma6=Plataform("plataform_de_pedra_reta_pequena.png", [640, 400])        
      plataformas_group.add(plataforma6)
      plataforma7=Plataform("plataform_de_pedra_reta_pequena.png", [550, 100])        
      plataformas_group.add(plataforma7)
@@ -157,16 +157,16 @@ def cria_Plataform_nAleatoria():
      plataformas_group.add(plataforma11)
      plataforma12=Plataform("brickYellow12.png", [450, 200])        
      plataformas_Amarelas_group.add(plataforma12)
-     plataforma13=Plataform("plataform_de_pedra_reta_pequena.png", [650, 200])        
+     plataforma13=Plataform("plataform_de_pedra_reta_pequena.png", [640, 200])        
      plataformas_group.add(plataforma13)
      plataforma14=Plataform("plataform_de_pedra_reta_pequena.png", [550, 300])        
      plataformas_group.add(plataforma14)
      
-     plataforma15=Plataform("plataform_de_pedra_reta_pequena.png", [150, 500])        
+     plataforma15=Plataform("plataform_de_pedra_reta_pequena.png", [150, 480])        
      plataformas_group.add(plataforma15)
      plataforma16=Plataform("brickRed11.png", [350, 500])        
      plataformas_Vermelha_group.add(plataforma16)
-     plataforma17=Plataform("plataform_de_pedra_reta_pequena.png", [550, 500])        
+     plataforma17=Plataform("plataform_de_pedra_reta_pequena.png", [550, 480])        
      plataformas_group.add(plataforma17)
      return plataformas_group, plataformas_Amarelas_group, plataformas_Vermelha_group, plataformas_Verde_group
  
