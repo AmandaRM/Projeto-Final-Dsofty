@@ -127,11 +127,11 @@ while rodando:
       nome_do_jogador_group.draw(tela3)
       fonte=pygame.font.SysFont(None,25, None)
           
-      if tecla_pressionada:
+      if tecla_pressionada:f
           for event in pygame.event.get():
               if event.type == pygame.KEYDOWN:
                   nomej=pygame.key.get_pressed()
-                  nomej=fonte.render(name,True,(252, 252, 252))
+                  nomej=fonte.render(nameg,True,(252, 252, 252))
                   if event.key == pygame.K_RETURN:
                     tela3.blit(nomej, (0,0))
                     jogo=True
