@@ -103,7 +103,7 @@ while rodando:
           tela2.blit(fundo, (0, 0))
           nome_jogo_group.draw(tela2)
           iniciar_jogo_group.draw(tela2)
-<<<<<<< HEAD
+
           nome=""
           if len(nome) < 12:
               retorno= username.inserir_nome()
@@ -116,9 +116,7 @@ while rodando:
               textnome = fonte_style.render("insira seu nome", True, yellow)
               tela2.blit(textnome, (350,450))
             
-=======
->>>>>>> 47aeb8b5c91828bfa7c2663b50c075af93f6a706
-                 
+
           for event in pygame.event.get():
           
               if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
@@ -137,21 +135,33 @@ while rodando:
       nome_do_jogador=movimento.bonequinho("nome_jogador.png", 110,200)
       nome_do_jogador_group=pygame.sprite.Group()
       nome_do_jogador_group.add(nome_do_jogador)
-      tecla_pressionada = pygame.key.get_pressed()
       tela3.blit(fundo1, (0, 0))
       nome_do_jogador_group.draw(tela3)
       fonte=pygame.font.SysFont(None,25, None)
-          
-      if tecla_pressionada:f
-          for event in pygame.event.get():
-              if event.type == pygame.KEYDOWN:
-                  nomej=pygame.key.get_pressed()
-                  nomej=fonte.render(nameg,True,(252, 252, 252))
+      done=False
+      text=''
+      input_box=pygame.Rect(100,100,140,32)
+      
+      
+      for event in pygame.event.get():
+          if event.type == pygame.KEYDOWN:
+              if event.key == pygame.K_RETURN:
+                  done=True
+              if done:
                   if event.key == pygame.K_RETURN:
-                    tela3.blit(nomej, (0,0))
-                    jogo=True
+                     print(text)
+                     text= " "
                   elif event.key == pygame.K_BACKSPACE:
-                    tela3.blit(nomej[:-1],(0,0))
+                     text = text[:-1]
+                  else:
+                      text += event.unicode
+                      
+      txt_surface=fonte.render(text, True, yellow)
+      width= max(200,txt_surface.get_width()+10)
+      input_box.w=width
+      tela3.blit(txt_surface, (input_box.x+5, input_box.y+5))
+      pygame.draw.rect(tela3, yellow, input_box, 2)
+      
       pygame.display.update()            
           
       
