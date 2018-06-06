@@ -104,18 +104,7 @@ while rodando:
           nome_jogo_group.draw(tela2)
           iniciar_jogo_group.draw(tela2)
 
-          nome=""
-          if len(nome) < 12:
-              retorno= username.inserir_nome()
-#              nome.append(retorno)
-              fonte_style=pygame.font.SysFont(None,35)
-              textnome = fonte_style.render(str(nome), True, yellow)
-              tela2.blit(textnome, (350,450))
-          if len(nome) == 1:
-              fonte_style=pygame.font.SysFont(None,35)
-              textnome = fonte_style.render("insira seu nome", True, yellow)
-              tela2.blit(textnome, (350,450))
-            
+
 
           for event in pygame.event.get():
           
@@ -140,7 +129,7 @@ while rodando:
       fonte=pygame.font.SysFont(None,25, None)
       done=False
       text=''
-      input_box=pygame.Rect(100,100,140,32)
+      input_box=pygame.Rect(280,300,140,32)
       
       
       for event in pygame.event.get():
@@ -149,12 +138,14 @@ while rodando:
                   done=True
               if done:
                   if event.key == pygame.K_RETURN:
-                     print(text)
-                     text= " "
+                     jogo=True
+                     jogador=False
                   elif event.key == pygame.K_BACKSPACE:
                      text = text[:-1]
                   else:
                       text += event.unicode
+                      print(text)   
+                      
                       
       txt_surface=fonte.render(text, True, yellow)
       width= max(200,txt_surface.get_width()+10)
@@ -282,16 +273,16 @@ while rodando:
                gameover=True
                jogo=False
                ############## GAME OVER MENU ##################
-               if gameover==True and inicio_jogo==False and jogo==False:
-                       tela3 = pygame.display.set_mode((800, 600), 0, 32)
+               if gameover==True and jogo==False:
+                       tela4 = pygame.display.set_mode((800, 600), 0, 32)
                        pygame.display.set_caption('Star Lego')
                        fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
                        restart_jogo = movimento.bonequinho("aperte_jogar.png", 195, 300) #mudar os nomes
                        restart_jogo_group=pygame.sprite.Group()
                        restart_jogo_group.add(restart_jogo)
-                       tela3.blit(fundo, (0, 0))
-                       nome_jogo_group.draw(tela3)
-                       restart_jogo_group.draw(tela3)
+                       tela4.blit(fundo, (0, 0))
+                       nome_jogo_group.draw(tela4)
+                       restart_jogo_group.draw(tela4)
                         
                        def restart_program():
                             """Restarts the current program.
@@ -309,7 +300,7 @@ while rodando:
 #                              jogo=True
 #                              gameover=False
             
-               pygame.display.update()      
+                       pygame.display.update()      
              
          if pygame.sprite.spritecollide(portal,bonzinho_group, True):
              malvado.vel = 0
@@ -354,18 +345,18 @@ cont+=1
 #menu.game_menu()
 pygame.display.quit()
 
-if firebase.get('Score', None) is None:
-    score={}
-else:
-    score=firebase.get('Score', None)
-    
-if gameover == True:
-    if name in score:
-        name[minu]=minu
-        name[seg]=seg
-    else:
-        score[name]={}
-        score[name]["minu"]=minu
-        score[name]["seg"]=seg
-                  
-firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)
+#if firebase.get('Score', None) is None:
+#    score={}
+#else:
+#    score=firebase.get('Score', None)
+#    
+#if gameover == True:
+#    if name in score:
+#        name[minu]=minu
+#        name[seg]=seg
+#    else:
+#        score[name]={}
+#        score[name]["minu"]=minu
+#        score[name]["seg"]=seg
+#                  
+#firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)
