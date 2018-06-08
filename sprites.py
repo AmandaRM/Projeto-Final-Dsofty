@@ -128,6 +128,7 @@ while rodando:
                       seg=0
           ############## MENU ##############        
               gambiarra = 0
+              inicio_jogo=True
               if inicio_jogo==True and jogo==False:
                       gambiarra += 1
                       if gambiarra ==1:
@@ -212,7 +213,6 @@ while rodando:
                      Plataformas_Amarelas.draw(tela)
                      Plataformas_Vermelhas.draw(tela)
                      Plataformas_Verdes.draw(tela)
-            #         pygame.mixer.music.play(-1)
                      
                      fonte=pygame.font.SysFont(None,25, None)
                      text=fonte.render( "TIME: ", True, white)
