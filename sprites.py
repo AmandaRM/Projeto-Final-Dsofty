@@ -73,6 +73,7 @@ ACCEPTED = string.ascii_letters+string.digits+string.punctuation+" "
 rodando = True
 relogio=pygame.time.Clock()
 while rodando:
+
     if gameover==False:
         pygame.init()
         tela = pygame.display.set_mode((800, 600), 0, 32)
@@ -377,16 +378,20 @@ while rodando:
             tela4.blit(fundo, (0, 0))
             nome_jogo_group.draw(tela4)
             restart_jogo_group.draw(tela4)
-                                                      
-            for event in pygame.event.get():                            
-                if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
-                    rodando = False
-                if event.type == pygame.KEYDOWN:                    
-                    if event.key == [K_RETURN]:
-                        print('aa')
-                        gameover=False
-
             pygame.display.update()              
+            
+            fim = True
+            while fim:                              
+                for event in pygame.event.get():                            
+                    if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
+                        rodando = False
+                        fim = False
+                    if event.type == pygame.KEYDOWN:                    
+                        if event.key == K_RETURN:
+                            print('aa')
+                            gameover=False
+                            fim = False
+
  
 #menu.game_menu()
 pygame.display.quit()
