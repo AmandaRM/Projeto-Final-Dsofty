@@ -179,14 +179,15 @@ while rodando:
                           if event2.key == pygame.K_RETURN:
                               done=True
                           if done:
-                              if event2.key == pygame.K_RETURN:
+                              if event2.key == pygame.K_s:
                                  jogo=True
                                  jogador=False
                               elif event2.key == pygame.K_BACKSPACE:
                                  name = name[:-1]
                               else:
                                   name += event.unicode
-                                  print(name)   
+                                  print(name)
+                                  print(event.unicode)
                                   
                                   
                   txt_surface=fonte.render(name, True, yellow)
@@ -383,8 +384,8 @@ while rodando:
                 if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
                     rodando = False 
                     tecla_pressionada = pygame.key.get_pressed()
-                    if tecla_pressionada[K_RETURN]:
-                        gameover=False
+                if tecla_pressionada[K_RETURN]:
+                    gameover=False
 
             pygame.display.update()              
  
