@@ -122,7 +122,7 @@ while rodando:
  
           #fazer o relógio funcionar
           if gameover == False:
-              if cont%30 == 0:
+              if cont%60 == 0:
                   seg+=1
                   if seg == 59:
                       minu+=1
@@ -176,17 +176,19 @@ while rodando:
                   
                   for event2 in pygame.event.get():
                       if event2.type == pygame.KEYDOWN:
-                          if event2.key == pygame.K_RETURN:
-                              done=True
-                          if done:
+#                          if event2.key == pygame.K_RETURN:
+#                              done=True
+#                          if done:
                               if event2.key == pygame.K_RETURN:
                                  jogo=True
                                  jogador=False
+                                 done=True
                               elif event2.key == pygame.K_BACKSPACE:
                                  name = name[:-1]
                               else:
                                   name += event.unicode
-                                  print(name)   
+                                  print(name) 
+                                  
                                   
                                   
                   txt_surface=fonte.render(name, True, yellow)
