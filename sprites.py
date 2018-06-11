@@ -72,7 +72,6 @@ ACCEPTED = string.ascii_letters+string.digits+string.punctuation+" "
 
 rodando = True
 relogio=pygame.time.Clock()
-restart = True
 while rodando:
     if gameover==False:
         pygame.init()
@@ -111,11 +110,13 @@ while rodando:
         cont=0
         seg=0
         minu=0
-        gameover=False
+        
         jogo=False
         jogador=False
         rodando2=True
         inicio_jogo=True
+        name=''
+        
         while rodando2:
           tempo=relogio.tick(30)
           cont+=1
@@ -170,37 +171,21 @@ while rodando:
                   nome_do_jogador_group.draw(tela3)
                   fonte=pygame.font.SysFont(None,25, None)
                   done=False
-                  name=''
                   input_box=pygame.Rect(280,300,140,32)
                   
                   
                   for event2 in pygame.event.get():
                       if event2.type == pygame.KEYDOWN:
-<<<<<<< HEAD
-                          if event2.key == pygame.K_RETURN:
-                              done=True
-                          if done:
-                              if event2.key == pygame.K_s:
-=======
-#                          if event2.key == pygame.K_RETURN:
-#                              done=True
-#                          if done:
-                              if event2.key == pygame.K_RETURN:
->>>>>>> 0ee11b05543ee042543975b88a7c4c71c6c8dad0
+                              if event2.key == pygame.K_h:
                                  jogo=True
                                  jogador=False
-                                 done=True
                               elif event2.key == pygame.K_BACKSPACE:
                                  name = name[:-1]
                               else:
-                                  name += event.unicode
-<<<<<<< HEAD
+                                  name += event2.unicode
                                   print(name)
-                                  print(event.unicode)
-=======
-                                  print(name) 
-                                  
->>>>>>> 0ee11b05543ee042543975b88a7c4c71c6c8dad0
+                                  print(event2.unicode)
+                                                               
                                   
                                   
                   txt_surface=fonte.render(name, True, yellow)
@@ -385,20 +370,21 @@ while rodando:
             #pontos=pygame.font.Font(None,25)
             #pontos2=pontos.render("Nome:{0} Score:{1}:{2}".format(name,minu,seg),True, yellow)
                                    
-            textsurface=fonte.render("Nome:{0} Score:{1}:{2}".format(name,minu,seg),False, yellow)
-            tela4.blit(textsurface,(250,60))
+#            textsurface=fonte.render('Nome:{0} Score:{1}:{2}'.format(name,minu,seg),True, yellow)
+#            tela4.blit(textsurface,(250,60))
                                    
             #tela.blit(pontos2,(0,0))
             tela4.blit(fundo, (0, 0))
             nome_jogo_group.draw(tela4)
             restart_jogo_group.draw(tela4)
                                                       
-            for event in pygame.event.get():
+            for event in pygame.event.get():                            
                 if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
-                    rodando = False 
-                    tecla_pressionada = pygame.key.get_pressed()
-                if tecla_pressionada[K_RETURN]:
-                    gameover=False
+                    rodando = False
+                if event.type == pygame.KEYDOWN:                    
+                    if event.key == [K_RETURN]:
+                        print('aa')
+                        gameover=False
 
             pygame.display.update()              
  
