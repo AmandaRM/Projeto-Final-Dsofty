@@ -115,6 +115,7 @@ while rodando:
         jogo=False
         jogador=False
         rodando2=True
+        inicio_jogo=True
         while rodando2:
           tempo=relogio.tick(30)
           cont+=1
@@ -128,7 +129,6 @@ while rodando:
                       seg=0
           ############## MENU ##############        
               gambiarra = 0
-              inicio_jogo=True
               if inicio_jogo==True and jogo==False:
                       gambiarra += 1
                       if gambiarra ==1:
@@ -174,15 +174,15 @@ while rodando:
                   input_box=pygame.Rect(280,300,140,32)
                   
                   
-                  for event in pygame.event.get():
-                      if event.type == pygame.KEYDOWN:
-                          if event.key == pygame.K_RETURN:
+                  for event2 in pygame.event.get():
+                      if event2.type == pygame.KEYDOWN:
+                          if event2.key == pygame.K_RETURN:
                               done=True
                           if done:
-                              if event.key == pygame.K_RETURN:
+                              if event2.key == pygame.K_RETURN:
                                  jogo=True
                                  jogador=False
-                              elif event.key == pygame.K_BACKSPACE:
+                              elif event2.key == pygame.K_BACKSPACE:
                                  name = name[:-1]
                               else:
                                   name += event.unicode
@@ -384,10 +384,8 @@ while rodando:
                     rodando = False 
                     tecla_pressionada = pygame.key.get_pressed()
                     if tecla_pressionada[K_RETURN]:
-                        restart = False
-                        jogo=True
                         gameover=False
-                        inicio_jogo= True
+
             pygame.display.update()              
  
 #menu.game_menu()
