@@ -378,7 +378,23 @@ while rodando:
             tela4.blit(fundo, (0, 0))
             nome_jogo_group.draw(tela4)
             restart_jogo_group.draw(tela4)
-            pygame.display.update()              
+            pygame.display.update() 
+
+            if firebase.get('Score', None) is None:
+                score={}
+            else:
+                score=firebase.get('Score', None)
+#                
+#            if gameover == True:
+#                if name in score:
+#                    name[minu]=minu
+#                    name[seg]=seg
+#                else:
+#                    score[name]={}
+#                    score[name]["minu"]=minu
+#                    score[name]["seg"]=seg
+#                              
+#            firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)             
             
             fim = True
             while fim:                              
@@ -391,23 +407,10 @@ while rodando:
                             print('aa')
                             gameover=False
                             fim = False
+                            
+                            
 
  
 #menu.game_menu()
 pygame.display.quit()
 
-#if firebase.get('Score', None) is None:
-#    score={}
-#else:
-#    score=firebase.get('Score', None)
-#    
-#if gameover == True:
-#    if name in score:
-#        name[minu]=minu
-#        name[seg]=seg
-#    else:
-#        score[name]={}
-#        score[name]["minu"]=minu
-#        score[name]["seg"]=seg
-#                  
-#firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)
