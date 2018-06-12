@@ -350,9 +350,8 @@ while rodando:
                           malvado=movimento.bonequinho.bom_LEFT_light(malvado)
                           malvado.image = pygame.image.load("zombie_walk2.png") 
                      if bonzinho.rect.y < malvado.rect.y:
-                         if pygame.sprite.spritecollide(malvado, Plataforma, False):
-                             malvado=movimento.bonequinho.bom_UP_light(malvado)
-                             malvado.image = pygame.image.load("zombie_jump.png") 
+                          malvado=movimento.bonequinho.bom_UP_light(malvado)
+                          malvado.image = pygame.image.load("zombie_jump.png") 
         
         #######ADICIONA VELOCIDADE AOS BONEQUINHOS -- COMO UMA GRAVIDADE##########
                      bonzinho.rect.y+=bonzinho.vel
