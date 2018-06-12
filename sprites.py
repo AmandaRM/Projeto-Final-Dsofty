@@ -177,7 +177,7 @@ while rodando:
                   
                   for event2 in pygame.event.get():
                       if event2.type == pygame.KEYDOWN:
-                              if event2.key == pygame.K_h:
+                              if event2.key == pygame.K_RETURN:
                                  jogo=True
                                  jogador=False
                               elif event2.key == pygame.K_BACKSPACE:
@@ -293,9 +293,9 @@ while rodando:
                      if lista5:
                          if lista5[0].rect.top > malvado.rect.top:
                              malvado.vel = 0
-                             malvado.rect.bottom=lista5[0].rect.top
+                             malvado.rect.bottom=lista5[0].rect.top-5
                          if lista5[0].rect.bottom > malvado.rect.top:
-                             malvado.vel = 3
+                             malvado.vel = 10
                          
                      lista4 = pygame.sprite.spritecollide(bonzinho, chao_group, False)
                      if lista4:
@@ -319,6 +319,9 @@ while rodando:
                          
                      if pygame.sprite.spritecollide(portal,bonzinho_group, True):
                          malvado.vel = 0
+                         gameover=True
+                         jogo=False
+                         rodando2=False
                                  
                      if pygame.sprite.spritecollide(portal, malvado_group, True) or  pygame.sprite.spritecollide(portal, bonzinho_group, True):
                          malvado.vel = 0
@@ -347,7 +350,7 @@ while rodando:
                           malvado=movimento.bonequinho.bom_LEFT_light(malvado)
                           malvado.image = pygame.image.load("zombie_walk2.png") 
                      if bonzinho.rect.y < malvado.rect.y:
-                         if pygame.sprite.spritecollide(malvado, chao_group, False) or pygame.sprite.spritecollide(malvado, Plataforma, False):
+                         if pygame.sprite.spritecollide(malvado, Plataforma, False):
                              malvado=movimento.bonequinho.bom_UP_light(malvado)
                              malvado.image = pygame.image.load("zombie_jump.png") 
         
@@ -361,24 +364,45 @@ while rodando:
 ############## GAME OVER MENU ##################
         if gameover==True and jogo==False:
             tela4 = pygame.display.set_mode((800, 600), 0, 32)
-                                   
+            tela4.blit(fundo, (0, 0))
+                                       
             pygame.display.set_caption('Star Lego')
             fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
             restart_jogo = movimento.bonequinho("aperte_jogar.png", 195, 300) #mudar os nomes
             restart_jogo_group=pygame.sprite.Group()
             restart_jogo_group.add(restart_jogo)
-            #pontos=("Nome:{0} Score:{1}:{2}".format(name,minu,seg))
-            #pontos=pygame.font.Font(None,25)
-            #pontos2=pontos.render("Nome:{0} Score:{1}:{2}".format(name,minu,seg),True, yellow)
-                                   
-#            textsurface=fonte.render('Nome:{0} Score:{1}:{2}'.format(name,minu,seg),True, yellow)
-#            tela4.blit(textsurface,(250,60))
-                                   
-            #tela.blit(pontos2,(0,0))
-            tela4.blit(fundo, (0, 0))
-            nome_jogo_group.draw(tela4)
-            restart_jogo_group.draw(tela4)
+            nome2_jogo= movimento.bonequinho("starlego.png", 125, 80)
+            nome2_jogo_group=pygame.sprite.Group()
+            nome2_jogo_group.add(nome2_jogo)
+              
+            fonte=pygame.font.SysFont(None,60, None)
+            text0=fonte.render( "NOME: ", True, yellow)
+            text02=fonte.render(str(seg) , True, yellow)
+            text03=fonte.render(str(minu), True, yellow)
+            text04=fonte.render("SCORE:", True, yellow)
+            text05=fonte.render(str(name), True, yellow)
+            text06=fonte.render(":", True, yellow)
+            tela4.blit(text0, (100,240)) 
+            tela4.blit(text02, (570,300)) 
+            tela4.blit(text06, (550, 300))
+            tela4.blit(text03,(520, 300))
+            tela4.blit(text04, (500, 240))
+            tela4.blit(text05, (100, 300))
+            nome2_jogo_group.draw(tela4)
+               #restart_jogo_group.draw(tela4)
             pygame.display.update() 
+#             else:
+#                tela4 = pygame.display.set_mode((800, 600), 0, 32)
+#                tela4.blit(fundo, (0, 0))
+#                pygame.display.set_caption('Star Lego')
+#                fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
+#                jogo_acabou= movimento.bonequinho("game_over.png", 300, 200)
+#                jogo_acabou_group=pygame.sprite.Group()
+#                jogo_acabou_group.add(jogo_acabou)
+#                jogo_acabou_group.draw(tela4)
+#                pygame.display.update()
+                
+                 
 
             if firebase.get('Score', None) is None:
                 score={}
