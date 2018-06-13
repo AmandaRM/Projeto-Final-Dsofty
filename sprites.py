@@ -64,7 +64,8 @@ def gameover():
 cont=0
 seg=0
 minu=0
-gameover=False
+gameover_lose=False
+gameover_win=False
 jogo=False
 jogador=False
 ACCEPTED = string.ascii_letters+string.digits+string.punctuation+" "
@@ -74,7 +75,7 @@ rodando = True
 relogio=pygame.time.Clock()
 while rodando:
 
-    if gameover==False:
+    if gameover_lose==False or gameover_win==False:
         pygame.init()
         tela = pygame.display.set_mode((800, 600), 0, 32)
         
@@ -123,7 +124,7 @@ while rodando:
           cont+=1
  
           #fazer o relógio funcionar
-          if gameover == False:
+          if gameover_lose == False or gameover_win==False :
               if cont%60 == 0:
                   seg+=1
                   if seg == 59:
@@ -312,14 +313,14 @@ while rodando:
                            fonte=pygame.font.SysFont(None,80) #25 é o tamanho da mensagem
                            text=fonte.render("Game Over", True, white) 
                            tela.blit(text,(400,400))
-                           gameover=True
+                           gameover_lose=True
                            jogo=False
                            rodando2=False
                            
                          
                      if pygame.sprite.spritecollide(portal,bonzinho_group, True):
                          malvado.vel = 0
-                         gameover=True
+                         gameover_win=True
                          jogo=False
                          rodando2=False
                                  
@@ -360,8 +361,42 @@ while rodando:
                      malvado.rect.y+=malvado.vel
                      malvado.vel+=2.5 
             
-############## GAME OVER MENU ##################
-        if gameover==True and jogo==False:
+############## GAME OVER LOSE MENU ##################
+        if gameover_lose==True and jogo==False:
+            tela4 = pygame.display.set_mode((800, 600), 0, 32)
+            tela4.blit(fundo, (0, 0))
+                                       
+            pygame.display.set_caption('Star Lego')
+            fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
+            restart_jogo = movimento.bonequinho("aperte_jogar.png", 195, 300) #mudar os nomes
+            restart_jogo_group=pygame.sprite.Group()
+            restart_jogo_group.add(restart_jogo)
+            nome2_jogo= movimento.bonequinho("starlego.png", 125, 80)
+            nome2_jogo_group=pygame.sprite.Group()
+            nome2_jogo_group.add(nome2_jogo)
+              
+            fonte=pygame.font.SysFont(None,60, None)
+
+            nome2_jogo_group.draw(tela4)
+               #restart_jogo_group.draw(tela4)
+            pygame.display.update()                 
+            
+            fim = True
+            while fim:                              
+                for event in pygame.event.get():                            
+                    if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
+                        rodando = False
+                        fim = False
+                    if event.type == pygame.KEYDOWN:                    
+                        if event.key == K_RETURN:
+                            print('aa')
+                            gameover_lose=False
+                            fim = False
+ 
+################### GAME OVER PARA QUANDO GANHA ##################
+
+
+        if gameover_win==True and jogo==False:
             tela4 = pygame.display.set_mode((800, 600), 0, 32)
             tela4.blit(fundo, (0, 0))
                                        
@@ -390,17 +425,7 @@ while rodando:
             nome2_jogo_group.draw(tela4)
                #restart_jogo_group.draw(tela4)
             pygame.display.update() 
-#             else:
-#                tela4 = pygame.display.set_mode((800, 600), 0, 32)
-#                tela4.blit(fundo, (0, 0))
-#                pygame.display.set_caption('Star Lego')
-#                fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
-#                jogo_acabou= movimento.bonequinho("game_over.png", 300, 200)
-#                jogo_acabou_group=pygame.sprite.Group()
-#                jogo_acabou_group.add(jogo_acabou)
-#                jogo_acabou_group.draw(tela4)
-#                pygame.display.update()
-                
+            
                  
 
             if firebase.get('Score', None) is None:
@@ -408,7 +433,7 @@ while rodando:
             else:
                 score=firebase.get('Score', None)
 #                
-#            if gameover == True:
+#            if gameover_win == True:
 #                if name in score:
 #                    name[minu]=minu
 #                    name[seg]=seg
@@ -428,7 +453,7 @@ while rodando:
                     if event.type == pygame.KEYDOWN:                    
                         if event.key == K_RETURN:
                             print('aa')
-                            gameover=False
+                            gameover_win=False
                             fim = False
                             
                             
