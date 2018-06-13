@@ -393,12 +393,23 @@ while rodando:
                             gameover_lose=False
                             fim = False
  
-################### GAME OVER PARA QUANDO GANHA ##################
+################### GAME OVER WIN ##################
 
 
         if gameover_win==True and jogo==False:
             tela4 = pygame.display.set_mode((800, 600), 0, 32)
             tela4.blit(fundo, (0, 0))
+
+#            if gameover_win == True:
+#                if name in score:
+#                    name[minu]=minu
+#                    name[seg]=seg
+#                else:
+#                    score[name]={}
+#                    score[name]["minu"]=minu
+#                    score[name]["seg"]=seg
+#                              
+#            firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)   
                                        
             pygame.display.set_caption('Star Lego')
             fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
@@ -432,17 +443,7 @@ while rodando:
                 score={}
             else:
                 score=firebase.get('Score', None)
-#                
-#            if gameover_win == True:
-#                if name in score:
-#                    name[minu]=minu
-#                    name[seg]=seg
-#                else:
-#                    score[name]={}
-#                    score[name]["minu"]=minu
-#                    score[name]["seg"]=seg
-#                              
-#            firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)             
+                          
             
             fim = True
             while fim:                              
