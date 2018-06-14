@@ -14,7 +14,7 @@ firebase=firebase.FirebaseApplication('https://projetofinal-d0c28.firebaseio.com
 pygame.init()
 musica = pygame.mixer.Sound("Star_lego.wav")
 
-
+tempo_inicial = pygame.time.get_ticks()
 # ===============   INICIALIZAÇÃO   ===============
 pygame.init()
 pygame.font.init()
@@ -125,11 +125,10 @@ while rodando:
  
           #fazer o relógio funcionar
           if gameover_lose == False or gameover_win==False :
-              if cont%60 == 0:
-                  seg+=1
-                  if seg == 59:
-                      minu+=1
-                      seg=0
+              seg = int((pygame.time.get_ticks()-tempo_inicial)/1000)
+              if seg == 60:
+                  minu += 1
+                  tempo_inicial = pygame.time.get_ticks()
           ############## MENU ##############        
               gambiarra = 0
               if inicio_jogo==True and jogo==False:
@@ -237,6 +236,7 @@ while rodando:
                      for event in pygame.event.get():     #pega lista de eventos 0)
                          if event.type == QUIT:      #verifica se um dos eventso é QUIT (janela fechou)
                              rodando = False            #executa a função de sistema "exit"
+                             rodando2= False
                          if event.type == pygame.KEYDOWN:
                              if event.key == K_UP:
                                  if pygame.sprite.spritecollide(bonzinho, Plataforma, False) or pygame.sprite.spritecollide(bonzinho, chao_group, False) or pygame.sprite.spritecollide(bonzinho,Plataformas_Vermelhas, True) or pygame.sprite.spritecollide(bonzinho, Plataformas_Amarelas, False):
@@ -294,9 +294,9 @@ while rodando:
                      if lista5:
                          if lista5[0].rect.top > malvado.rect.top:
                              malvado.vel = 0
-                             malvado.rect.bottom=lista5[0].rect.top-5
+                             malvado.rect.bottom=lista5[0].rect.top+1
                          if lista5[0].rect.bottom > malvado.rect.top:
-                             malvado.vel = 10
+                             malvado.vel = 5
                          
                      lista4 = pygame.sprite.spritecollide(bonzinho, chao_group, False)
                      if lista4:
@@ -390,6 +390,8 @@ while rodando:
                     if event.type == pygame.KEYDOWN:                    
                         if event.key == K_RETURN:
                             print('aa')
+                            minu = 0
+                            tempo_inicial = pygame.time.get_ticks()
                             gameover_lose=False
                             fim = False
  
@@ -453,6 +455,9 @@ while rodando:
                         fim = False
                     if event.type == pygame.KEYDOWN:                    
                         if event.key == K_RETURN:
+                            minu = 0
+                            seg = 0
+                            tempo_inicial = pygame.time.get_ticks()
                             print('aa')
                             gameover_win=False
                             fim = False
