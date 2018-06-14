@@ -296,7 +296,7 @@ while rodando:
                              malvado.vel = 0
                              malvado.rect.bottom=lista5[0].rect.top+1
                          if lista5[0].rect.bottom > malvado.rect.top:
-                             malvado.vel = 5
+                             malvado.vel = 3
                          
                      lista4 = pygame.sprite.spritecollide(bonzinho, chao_group, False)
                      if lista4:
@@ -351,8 +351,9 @@ while rodando:
                           malvado=movimento.bonequinho.bom_LEFT_light(malvado)
                           malvado.image = pygame.image.load("zombie_walk2.png") 
                      if bonzinho.rect.y < malvado.rect.y:
-                          malvado=movimento.bonequinho.bom_UP_light(malvado)
-                          malvado.image = pygame.image.load("zombie_jump.png") 
+                         if pygame.sprite.spritecollide(malvado, chao_group, False):
+                             malvado=movimento.bonequinho.bom_UP_light(malvado)
+                             malvado.image = pygame.image.load("zombie_jump.png") 
         
         #######ADICIONA VELOCIDADE AOS BONEQUINHOS -- COMO UMA GRAVIDADE##########
                      bonzinho.rect.y+=bonzinho.vel
@@ -368,19 +369,19 @@ while rodando:
                                        
             pygame.display.set_caption('Star Lego')
             fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
-            restart_jogo = movimento.bonequinho("reiniciar.png", 195, 500) #mudar os nomes
+            restart_jogo = movimento.bonequinho("reiniciar.png", 200, 300) #mudar os nomes
             restart_jogo_group=pygame.sprite.Group()
             restart_jogo_group.add(restart_jogo)
             nome2_jogo= movimento.bonequinho("starlego.png", 125, 80)
             nome2_jogo_group=pygame.sprite.Group()
             nome2_jogo_group.add(nome2_jogo)
-            fimdejogo=movimento.bonequinho("game_over.png", 125, 250)
+            fimdejogo=movimento.bonequinho("gameover.png", 145, 180)
             fimdejogo_group=pygame.sprite.Group()
             fimdejogo_group.add(fimdejogo)
               
             fonte=pygame.font.SysFont(None,60, None)
 
-            nome2_jogo_group.draw(tela4)
+            #nome2_jogo_group.draw(tela4)
             restart_jogo_group.draw(tela4)
             fimdejogo_group.draw(tela4)
             pygame.display.update()                 
@@ -419,7 +420,7 @@ while rodando:
                                        
             pygame.display.set_caption('Star Lego')
             fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
-            restart_jogo = movimento.bonequinho("reiniciar.png", 195, 300) #mudar os nomes
+            restart_jogo = movimento.bonequinho("reiniciar.png", 195, 450) #mudar os nomes
             restart_jogo_group=pygame.sprite.Group()
             restart_jogo_group.add(restart_jogo)
             nome2_jogo= movimento.bonequinho("starlego.png", 125, 80)
