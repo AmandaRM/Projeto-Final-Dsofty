@@ -351,9 +351,8 @@ while rodando:
                           malvado=movimento.bonequinho.bom_LEFT_light(malvado)
                           malvado.image = pygame.image.load("zombie_walk2.png") 
                      if bonzinho.rect.y < malvado.rect.y:
-                         if pygame.sprite.spritecollide(malvado, chao_group, False):
-                             malvado=movimento.bonequinho.bom_UP_light(malvado)
-                             malvado.image = pygame.image.load("zombie_jump.png") 
+                         malvado=movimento.bonequinho.bom_UP_light(malvado)
+                         malvado.image = pygame.image.load("zombie_jump.png") 
         
         #######ADICIONA VELOCIDADE AOS BONEQUINHOS -- COMO UMA GRAVIDADE##########
                      bonzinho.rect.y+=bonzinho.vel
@@ -406,17 +405,22 @@ while rodando:
         if gameover_win==True and jogo==False:
             tela4 = pygame.display.set_mode((800, 600), 0, 32)
             tela4.blit(fundo, (0, 0))
-
-#            if gameover_win == True:
-#                if name in score:
-#                    name[minu]=minu
-#                    name[seg]=seg
-#                else:
-#                    score[name]={}
-#                    score[name]["minu"]=minu
-#                    score[name]["seg"]=seg
-#                              
-#            firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)   
+            
+            if firebase.get('Score', None) is None:
+                score={}
+            else:
+                score=firebase.get('Score', None)
+                
+            if gameover_win == True:
+                if name in score:
+                    name[minu]=minu
+                    name[seg]=seg
+                else:
+                    score[name]={}
+                    score[name]["minu"]=minu
+                    score[name]["seg"]=seg
+                              
+            firebase.patch('https://projetofinal-d0c28.firebaseio.com/', score)   
                                        
             pygame.display.set_caption('Star Lego')
             fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
@@ -446,12 +450,10 @@ while rodando:
             
                  
 
-            if firebase.get('Score', None) is None:
-                score={}
-            else:
-                score=firebase.get('Score', None)
-                          
             
+                          
+      
+        
             fim = True
             while fim:                              
                 for event in pygame.event.get():                            
