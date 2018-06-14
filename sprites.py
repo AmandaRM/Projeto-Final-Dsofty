@@ -368,17 +368,21 @@ while rodando:
                                        
             pygame.display.set_caption('Star Lego')
             fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
-            restart_jogo = movimento.bonequinho("aperte_jogar.png", 195, 300) #mudar os nomes
+            restart_jogo = movimento.bonequinho("reiniciar.png", 195, 500) #mudar os nomes
             restart_jogo_group=pygame.sprite.Group()
             restart_jogo_group.add(restart_jogo)
             nome2_jogo= movimento.bonequinho("starlego.png", 125, 80)
             nome2_jogo_group=pygame.sprite.Group()
             nome2_jogo_group.add(nome2_jogo)
+            fimdejogo=movimento.bonequinho("game_over.png", 125, 250)
+            fimdejogo_group=pygame.sprite.Group()
+            fimdejogo_group.add(fimdejogo)
               
             fonte=pygame.font.SysFont(None,60, None)
 
             nome2_jogo_group.draw(tela4)
-               #restart_jogo_group.draw(tela4)
+            restart_jogo_group.draw(tela4)
+            fimdejogo_group.draw(tela4)
             pygame.display.update()                 
             
             fim = True
@@ -415,7 +419,7 @@ while rodando:
                                        
             pygame.display.set_caption('Star Lego')
             fundo = pygame.image.load("Fundo-Estrelas.jpg").convert()
-            restart_jogo = movimento.bonequinho("aperte_jogar.png", 195, 300) #mudar os nomes
+            restart_jogo = movimento.bonequinho("reiniciar.png", 195, 300) #mudar os nomes
             restart_jogo_group=pygame.sprite.Group()
             restart_jogo_group.add(restart_jogo)
             nome2_jogo= movimento.bonequinho("starlego.png", 125, 80)
@@ -436,7 +440,7 @@ while rodando:
             tela4.blit(text04, (500, 240))
             tela4.blit(text05, (100, 300))
             nome2_jogo_group.draw(tela4)
-               #restart_jogo_group.draw(tela4)
+            restart_jogo_group.draw(tela4)
             pygame.display.update() 
             
                  
